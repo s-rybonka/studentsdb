@@ -1,0 +1,23 @@
+{% extends 'base_cabinet_.html' %}
+{% load staticfiles i18n %}
+{% block meta_title %}{%  trans 'Students attanding' %}{{ gid }}{% endblock %}
+
+{% block content %}
+    <div class="row" id="add_group-form-row">
+        <div class="col-xs-12" id="edit-form-xs">
+            <div class="alert alert-warning">Some message here</div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><h2>{%  trans 'Students attanding' %} {{ gid }}</h2></div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-offset-3 col-xs-5">
+                            Some action here <br>
+                            <a href="{% url 'journal_update' %}">{%  trans 'Update' %}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

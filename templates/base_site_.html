@@ -1,0 +1,45 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        {% block site_title %}
+        {% endblock %}
+    </title>
+    <meta name="description" content="Management System">
+    <meta name="keywords" content="management students freelance">
+
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'gentelella/vendors/bootstrap/dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/imagehover.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    {% block site_stylesheet %}
+    {% endblock %}
+
+</head>
+<body>
+{% include 'site_/_header.html' %}
+<div class="container">
+    <div class="row">
+        {% block site_content %}
+        {% endblock %}
+    </div>
+</div>
+
+
+{% include 'site_/_footer.html' %}
+
+<script src="{% static 'gentelella/vendors/jquery/src/jquery.js' %}"></script>
+<script src="{% static 'js/jquery.easing.min.js' %}"></script>
+<script src="{% static 'gentelella/vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+
+{% block site_scripts %}
+{% endblock %}
+</body>
+</html>

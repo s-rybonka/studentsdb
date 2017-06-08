@@ -1,0 +1,15 @@
+{% extends "base_reqistration.html" %}
+{% load i18n %}
+{% load account socialaccount bootstrap3 %}
+
+{% block registration_title %}{% trans "Account Inactive" %}{% endblock %}
+
+{% block registration_content %}
+    <div class="col-md-offset-4 col-md-5">
+        <div class="registration_container">
+            <h1>{% trans "Account Inactive" %}</h1>
+            <p>{% trans "This account is inactive." %}</p>
+        </div>
+    </div>
+{% endblock %}
+

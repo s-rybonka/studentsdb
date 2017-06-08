@@ -1,0 +1,32 @@
+{% extends 'base_cabinet_.html' %}
+{% load  staticfiles crispy_forms_tags bootstrap3 %}
+{% block meta_title %}Countact us{% endblock %}
+
+{% block logo %}Some new logo here{% endblock %}
+
+{% block group_menu %}Some new menu here{% endblock %}
+
+{% block status_message %}
+
+
+{% endblock %}
+{% block content %}
+<div class="row">
+<div class="col-md-offset-3 col-md-5">
+
+    <form action="{% url 'contact_form' %}" method="post">
+    {% csrf_token %}
+    {% bootstrap_field form.name %}
+         {% bootstrap_field form.email %}
+          {% bootstrap_field form.body %}
+       <button type="submit" class="btn btn-primary">Send</button>
+
+    </form>
+
+
+</div>
+
+</div>
+
+
+{% endblock %}

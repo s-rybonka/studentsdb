@@ -1,0 +1,4 @@
+
+User name: {{ name }}
+Message of {{ email }}
+Message content: {{ body }}

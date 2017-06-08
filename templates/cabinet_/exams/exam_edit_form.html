@@ -1,0 +1,45 @@
+{% extends 'base_cabinet_.html' %}
+{% load staticfiles crispy_forms_tags bootstrap3 i18n%}
+{% block meta_title %}{%  trans 'Edit exam' %}{% endblock %}
+
+{% block content %}
+    <div class="row" id="edit-form-row">
+        <div class="col-xs-12" id="edit-form-xs">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h2>{{ object.discipline_name }}</h2></div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-offset-3 col-xs-5">
+                            <fieldset>
+                                <legend>{% trans 'Edit exam form' %}</legend>
+
+                                <form method="post" action="{% url 'exams_edit' object.pk %}"
+                                      enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {% bootstrap_field form.discipline_name %}
+                                    {% bootstrap_field form.date %}
+                                    {% bootstrap_field form.teacher_name %}
+                                    {% bootstrap_field form.group_id %}
+
+                                    <!-- To do buttons with bootstrap3 -->
+                                    <div class="row">
+                                        <div class="col-xs-offset-2 col-xs-3">
+                                            <button type="submit" name="add_button" class="btn btn-primary">
+                                                {% trans 'Save' %}
+                                            </button>
+                                        </div>
+                                        <div class="col-xs-offset-1 col-xs-3">
+                                            <button type="submit" name="cancel_button" class="btn btn-link">
+                                                {% trans 'Cancel' %}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

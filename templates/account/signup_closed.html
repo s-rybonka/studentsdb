@@ -1,0 +1,19 @@
+{% extends "base_reqistration.html" %}
+{% load i18n %}
+{% load account socialaccount bootstrap3 %}
+
+{% block registration_title %}{% trans "Sign Up Closed" %}{% endblock %}
+
+{% block registration_content %}
+    <div class="col-md-offset-4 col-md-5">
+        <div class="registration_container">
+            <h1>{% trans "Sign Up Closed" %}</h1>
+            <p>{% trans "We are sorry, but the sign up is currently closed." %}</p>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+

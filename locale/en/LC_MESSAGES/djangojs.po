@@ -1,0 +1,347 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-09 08:36+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: node_modules/babel-polyfill/browser.js:1
+#: node_modules/babel-polyfill/dist/polyfill.min.js:1
+msgid "delete"
+msgstr ""
+
+#: node_modules/babel-polyfill/browser.js:1
+#: node_modules/babel-polyfill/dist/polyfill.min.js:1
+msgid "has"
+msgstr ""
+
+#: node_modules/babel-polyfill/browser.js:1
+#: node_modules/babel-polyfill/dist/polyfill.min.js:1
+msgid "get"
+msgstr ""
+
+#: static/dist/bundle.js:9536 static/js/main.js:92
+msgid "Error on  server"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/SelectFilter2.17009b6d4428.js:47
+#: studentsdb/staticfiles/admin/js/SelectFilter2.js:47
+#, javascript-format
+msgid "Available %s"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/SelectFilter2.17009b6d4428.js:53
+#: studentsdb/staticfiles/admin/js/SelectFilter2.js:53
+#, javascript-format
+msgid ""
+"This is the list of available %s. You may choose some by selecting them in "
+"the box below and then clicking the \"Choose\" arrow between the two boxes."
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/SelectFilter2.17009b6d4428.js:69
+#: studentsdb/staticfiles/admin/js/SelectFilter2.js:69
+#, javascript-format
+msgid "Type into this box to filter down the list of available %s."
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/SelectFilter2.17009b6d4428.js:74
+#: studentsdb/staticfiles/admin/js/SelectFilter2.js:74
+msgid "Filter"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/SelectFilter2.17009b6d4428.js:78
+#: studentsdb/staticfiles/admin/js/SelectFilter2.js:78
+msgid "Choose all"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/SelectFilter2.17009b6d4428.js:78
+#: studentsdb/staticfiles/admin/js/SelectFilter2.js:78
+#, javascript-format
+msgid "Click to choose all %s at once."
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/SelectFilter2.17009b6d4428.js:84
+#: studentsdb/staticfiles/admin/js/SelectFilter2.js:84
+msgid "Choose"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/SelectFilter2.17009b6d4428.js:86
+#: studentsdb/staticfiles/admin/js/SelectFilter2.js:86
+msgid "Remove"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/SelectFilter2.17009b6d4428.js:92
+#: studentsdb/staticfiles/admin/js/SelectFilter2.js:92
+#, javascript-format
+msgid "Chosen %s"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/SelectFilter2.17009b6d4428.js:98
+#: studentsdb/staticfiles/admin/js/SelectFilter2.js:98
+#, javascript-format
+msgid ""
+"This is the list of chosen %s. You may remove some by selecting them in the "
+"box below and then clicking the \"Remove\" arrow between the two boxes."
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/SelectFilter2.17009b6d4428.js:108
+#: studentsdb/staticfiles/admin/js/SelectFilter2.js:108
+msgid "Remove all"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/SelectFilter2.17009b6d4428.js:108
+#: studentsdb/staticfiles/admin/js/SelectFilter2.js:108
+#, javascript-format
+msgid "Click to remove all chosen %s at once."
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/actions.32861b6cbdf9.js:48
+#: studentsdb/staticfiles/admin/js/actions.js:48
+#: studentsdb/staticfiles/admin/js/actions.min.f51f04edab28.js:2
+#: studentsdb/staticfiles/admin/js/actions.min.js:2
+msgid "%(sel)s of %(cnt)s selected"
+msgid_plural "%(sel)s of %(cnt)s selected"
+msgstr[0] ""
+msgstr[1] ""
+
+#: studentsdb/staticfiles/admin/js/actions.32861b6cbdf9.js:117
+#: studentsdb/staticfiles/admin/js/actions.js:117
+#: studentsdb/staticfiles/admin/js/actions.min.f51f04edab28.js:4
+#: studentsdb/staticfiles/admin/js/actions.min.js:4
+msgid ""
+"You have unsaved changes on individual editable fields. If you run an "
+"action, your unsaved changes will be lost."
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/actions.32861b6cbdf9.js:129
+#: studentsdb/staticfiles/admin/js/actions.js:129
+#: studentsdb/staticfiles/admin/js/actions.min.f51f04edab28.js:5
+#: studentsdb/staticfiles/admin/js/actions.min.js:5
+msgid ""
+"You have selected an action, but you haven't saved your changes to "
+"individual fields yet. Please click OK to save. You'll need to re-run the "
+"action."
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/actions.32861b6cbdf9.js:131
+#: studentsdb/staticfiles/admin/js/actions.js:131
+#: studentsdb/staticfiles/admin/js/actions.min.f51f04edab28.js:5
+#: studentsdb/staticfiles/admin/js/actions.min.js:5
+msgid ""
+"You have selected an action, and you haven't made any changes on individual "
+"fields. You're probably looking for the Go button rather than the Save "
+"button."
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.1536fb6bea1d.js:74
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.js:74
+#, javascript-format
+msgid "Note: You are %s hour ahead of server time."
+msgid_plural "Note: You are %s hours ahead of server time."
+msgstr[0] ""
+msgstr[1] ""
+
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.1536fb6bea1d.js:82
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.js:82
+#, javascript-format
+msgid "Note: You are %s hour behind server time."
+msgid_plural "Note: You are %s hours behind server time."
+msgstr[0] ""
+msgstr[1] ""
+
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.1536fb6bea1d.js:109
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.1536fb6bea1d.js:160
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.js:109
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.js:160
+msgid "Now"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.1536fb6bea1d.js:127
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.js:127
+msgid "Choose a Time"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.1536fb6bea1d.js:157
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.js:157
+msgid "Choose a time"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.1536fb6bea1d.js:165
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.js:165
+msgid "Midnight"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.1536fb6bea1d.js:170
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.js:170
+msgid "6 a.m."
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.1536fb6bea1d.js:175
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.js:175
+msgid "Noon"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.1536fb6bea1d.js:180
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.js:180
+msgid "6 p.m."
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.1536fb6bea1d.js:188
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.1536fb6bea1d.js:348
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.js:188
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.js:348
+msgid "Cancel"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.1536fb6bea1d.js:253
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.1536fb6bea1d.js:333
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.js:253
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.js:333
+msgid "Today"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.1536fb6bea1d.js:270
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.js:270
+msgid "Choose a Date"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.1536fb6bea1d.js:327
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.js:327
+msgid "Yesterday"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.1536fb6bea1d.js:339
+#: studentsdb/staticfiles/admin/js/admin/DateTimeShortcuts.js:339
+msgid "Tomorrow"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/calendar.9ac94d055fbd.js:12
+#: studentsdb/staticfiles/admin/js/calendar.js:12
+msgid "January"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/calendar.9ac94d055fbd.js:13
+#: studentsdb/staticfiles/admin/js/calendar.js:13
+msgid "February"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/calendar.9ac94d055fbd.js:14
+#: studentsdb/staticfiles/admin/js/calendar.js:14
+msgid "March"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/calendar.9ac94d055fbd.js:15
+#: studentsdb/staticfiles/admin/js/calendar.js:15
+msgid "April"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/calendar.9ac94d055fbd.js:16
+#: studentsdb/staticfiles/admin/js/calendar.js:16
+msgid "May"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/calendar.9ac94d055fbd.js:17
+#: studentsdb/staticfiles/admin/js/calendar.js:17
+msgid "June"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/calendar.9ac94d055fbd.js:18
+#: studentsdb/staticfiles/admin/js/calendar.js:18
+msgid "July"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/calendar.9ac94d055fbd.js:19
+#: studentsdb/staticfiles/admin/js/calendar.js:19
+msgid "August"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/calendar.9ac94d055fbd.js:20
+#: studentsdb/staticfiles/admin/js/calendar.js:20
+msgid "September"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/calendar.9ac94d055fbd.js:21
+#: studentsdb/staticfiles/admin/js/calendar.js:21
+msgid "October"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/calendar.9ac94d055fbd.js:22
+#: studentsdb/staticfiles/admin/js/calendar.js:22
+msgid "November"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/calendar.9ac94d055fbd.js:23
+#: studentsdb/staticfiles/admin/js/calendar.js:23
+msgid "December"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/calendar.9ac94d055fbd.js:26
+#: studentsdb/staticfiles/admin/js/calendar.js:26
+msgctxt "one letter Sunday"
+msgid "S"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/calendar.9ac94d055fbd.js:27
+#: studentsdb/staticfiles/admin/js/calendar.js:27
+msgctxt "one letter Monday"
+msgid "M"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/calendar.9ac94d055fbd.js:28
+#: studentsdb/staticfiles/admin/js/calendar.js:28
+msgctxt "one letter Tuesday"
+msgid "T"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/calendar.9ac94d055fbd.js:29
+#: studentsdb/staticfiles/admin/js/calendar.js:29
+msgctxt "one letter Wednesday"
+msgid "W"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/calendar.9ac94d055fbd.js:30
+#: studentsdb/staticfiles/admin/js/calendar.js:30
+msgctxt "one letter Thursday"
+msgid "T"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/calendar.9ac94d055fbd.js:31
+#: studentsdb/staticfiles/admin/js/calendar.js:31
+msgctxt "one letter Friday"
+msgid "F"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/calendar.9ac94d055fbd.js:32
+#: studentsdb/staticfiles/admin/js/calendar.js:32
+msgctxt "one letter Saturday"
+msgid "S"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/collapse.17d715df2104.js:10
+#: studentsdb/staticfiles/admin/js/collapse.17d715df2104.js:21
+#: studentsdb/staticfiles/admin/js/collapse.js:10
+#: studentsdb/staticfiles/admin/js/collapse.js:21
+#: studentsdb/staticfiles/admin/js/collapse.min.dc930adb2821.js:1
+#: studentsdb/staticfiles/admin/js/collapse.min.js:1
+msgid "Show"
+msgstr ""
+
+#: studentsdb/staticfiles/admin/js/collapse.17d715df2104.js:18
+#: studentsdb/staticfiles/admin/js/collapse.js:18
+#: studentsdb/staticfiles/admin/js/collapse.min.dc930adb2821.js:1
+#: studentsdb/staticfiles/admin/js/collapse.min.js:1
+msgid "Hide"
+msgstr ""

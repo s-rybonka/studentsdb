@@ -1,0 +1,44 @@
+{% extends 'base_cabinet_.html' %}
+{% load staticfiles i18n %}
+
+{% block meta_title %}{% trans 'Exams result' %}{% endblock %}
+{% block stylesheet %}
+
+{% endblock %}
+{% block content %}
+    <div class="row" id="count-visits-row">
+        <div class="col-xs-12" id="count-visits-xs">
+            <div class="panel panel-default">
+                <div class="panel-hading"><h2>{% trans 'Exams result' %}</h2></div>
+                <div class="panel-body">
+                   <table class="table table-hover table-striped">
+                       <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>{% trans 'Discipline' %}</th>
+                          <th>{% trans 'Student' %}</th>
+                          <th>{% trans 'Rating' %}</th>
+                          <th>{% trans 'Date' %}</th>
+                      </tr>
+                    </thead>
+                       <tbody>
+                   {% for key in object_list %}
+                   <tr>
+                   <td>{{ forloop.counter }}</td>
+                       <td>{{ key.exam_id }}</td>
+                       <td>{{ key.student_id }}</td>
+                       <td>{{ key.rating }}</td>
+                       <td>{{ key.date }}</td>
+                   </tr>
+                   {% endfor %}
+                   </tbody>
+                   </table>
+                </div>
+            </div>
+            {% include 'snippets/pagination.html' %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}

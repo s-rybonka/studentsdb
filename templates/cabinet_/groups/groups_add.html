@@ -1,0 +1,31 @@
+{% extends 'base_cabinet_.html' %}
+{% load staticfiles bootstrap3  i18n%}
+{% block meta_title %}{% trans 'Add new group' %}{% endblock %}
+
+{% block content %}
+    <div class="row" id="add_group-form-row">
+        <div class="col-xs-12" id="edit-form-xs">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h2>{% trans 'Add new group' %}</h2></div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-offset-3 col-xs-5">
+                            <fieldset>
+                                <legend>{% trans 'Add group form' %}</legend>
+                                <form method="post" action="{% url 'groups_add' %}">
+                                    {% csrf_token %}
+                                    {% bootstrap_field form.title %}
+                                    {% bootstrap_field form.leader %}
+                                    {% bootstrap_field form.notes %}
+                                    <button class="btn btn-primary" type="submit">
+                                        {% trans 'Add group' %}
+                                    </button>
+                                </form>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

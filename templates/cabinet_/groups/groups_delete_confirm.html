@@ -1,0 +1,30 @@
+{% extends 'base_cabinet_.html' %}
+{%  load staticfiles i18n %}
+{% block meta_title %}{% trans 'Delete group' %}{% endblock %}
+
+{% block content %}
+    <div class="row" id="add_group-form-row">
+        <div class="col-xs-12" id="edit-form-xs">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h2>{% trans 'Delete group:' %}{{ object.title }}</h2></div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-offset-3 col-xs-5">
+
+
+                            <form action="{% url 'groups_delete' object.pk %}" method="post">
+                                {% csrf_token %}
+                               {% trans 'Delete group:' %} {{ object.title }}
+                                 <button class="btn btn-danger" type="submit">
+                               {% trans 'Delete' %}
+                            </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
