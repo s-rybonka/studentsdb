@@ -4,7 +4,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
-from .models import Account, AccountRoles
+from .models import Account
 
 
 # class UserCreationForm(forms.ModelForm):
@@ -91,10 +91,5 @@ class AccountAdmin(admin.ModelAdmin):
     list_display = ('email',)
 
 
-class AccountRolesAdmin(admin.ModelAdmin):
-    fields = ['account', 'is_manager']
-    list_display = ('account', 'is_manager')
-
-
 admin.site.register(Account, AccountAdmin)
-admin.site.register(AccountRoles, AccountRolesAdmin)
+

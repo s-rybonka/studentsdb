@@ -6,6 +6,7 @@ from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
 
+from timezone_field import TimeZoneField
 
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -50,9 +51,15 @@ class Account(AbstractBaseUser):
     first_name = models.CharField(max_length=30, null=True, verbose_name=_('Name'))
 
     last_name = models.CharField(max_length=30, null=True, verbose_name=_('Surname'))
+
     is_email_confirmed = models.BooleanField(verbose_name='Email confirmed', default=False)
+
     is_active = models.BooleanField(default=True)
+
     is_admin = models.BooleanField(default=False)
+
+    timezone = TimeZoneField(verbose_name=_('Time zone'), default="UTC")
+
     data_joined = models.DateTimeField(verbose_name='Date joined', auto_now_add=True, null=True, blank=True)
 
     objects = UserManager()
@@ -92,20 +99,3 @@ class Account(AbstractBaseUser):
         return self.is_admin
 
 
-class AccountRoles(models.Model):
-    account = models.ForeignKey('accounts.Account', verbose_name='Account', related_name='account_roles')
-    is_manager = models.BooleanField(default=False)
-
-    def has_perm(self, perm, obj=None):
-        "Does the user have a specific permission?"
-        return  rules.has_perm(perm, self, obj)
-
-    def has_perms(self, perms, obj=None):
-        "Does the user have a specific permission?"
-
-        return  all(rules.has_perm(perm, self, obj) for perm in perms)
-
-    def has_module_perms(self, app_label):
-        "Does the user have permissions to view the app `app_label`?"
-        # Simplest possible answer: Yes, always
-        return rules.has_perm(app_label, self)

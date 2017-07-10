@@ -53,12 +53,13 @@ local_settings.py
 .idea/
 # all log files
 *.log*
-*.env*
+*.env*bo
 media
 components*
 staticfiles*
 node_modules*
 static
+soft_environment
 
 
 
