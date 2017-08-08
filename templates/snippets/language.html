@@ -7,15 +7,14 @@
     <a href="#" class="language-selector" data-toggle="dropdown">
         <img id="language-flag" width="40" src="{% static 'img/flag-'|add:LANGUAGE|add:'.png' %}" alt="">
     </a>
-    <div class="dropdown-menu dropdown-language-bar" id="lang-bar">
-
+    <div class="dropdown-menu dropdown-language-bar" id="lang-bar" style="margin-left: 10px;">
+        {% get_current_language as LANGUAGE_CODE %}
         {% for lang in LANGUAGES %}
-
-                <img  class="current-lang" data-lang="{{ lang.0 }}"
-                 src="{% static 'img/flag-'|add:lang.0|add:'.png' %}" alt="" width="40">
-
+            {% if LANGUAGE_CODE != lang.0 %}
+                <img class="current-lang" data-lang="{{ lang.0 }}"
+                     src="{% static 'img/flag-'|add:lang.0|add:'.png' %}" alt="" width="40">
+            {% endif %}
         {% endfor %}
-
     </div>
     <form action="{% url 'set_language' %}" method="post" id="language-form">
         {% csrf_token %}

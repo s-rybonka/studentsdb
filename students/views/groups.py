@@ -10,7 +10,7 @@ from ..util import get_current_group
 
 # Manage Groups
 class GroupsListView(generic.ListView):
-    template_name = "cabinet_/groups/groups.html"
+    template_name = "cabinet/groups/groups.html"
     model = Group
     paginate_by = 10
 
@@ -33,7 +33,7 @@ class GroupsListView(generic.ListView):
 
 
 class GroupsAddView(SuccessMessageMixin, generic.CreateView):
-    template_name = 'cabinet_/groups/groups_add.html'
+    template_name = 'cabinet/groups/groups_add.html'
     model = Group
     form_class = GroupForm
     success_url = '/groups'
@@ -42,14 +42,14 @@ class GroupsAddView(SuccessMessageMixin, generic.CreateView):
 
 class GroupsEditView(SuccessMessageMixin, generic.UpdateView):
     model = Group
-    template_name = 'cabinet_/groups/groups_edit.html'
+    template_name = 'cabinet/groups/groups_edit.html'
     form_class = GroupForm
     success_url = '/groups'
     success_message = _('%(title)s Updated!')
 
 
 class GroupsDeleteView(generic.DeleteView):
-    template_name = 'cabinet_/groups/groups_delete_confirm.html'
+    template_name = 'cabinet/groups/groups_delete_confirm.html'
     model = Group
 
     def get_success_url(self):

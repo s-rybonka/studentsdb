@@ -2,10 +2,6 @@
 {% load  staticfiles i18n bootstrap3 %}
 {% block meta_title %}{% trans 'Add students' %}{% endblock %}
 
-{% block logo %}Some new logo here{% endblock %}
-
-{% block group_menu %}Some new menu here{% endblock %}
-
 {% block content %}
     <div class="row" id="add-form-row">
         <div class="col-xs-12" id="edit-form-xs">
@@ -20,6 +16,8 @@
                                 <form method="post" action="{% url 'students_add' %}" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     {% bootstrap_form_errors form non_fields %}
+
+                                    {% bootstrap_field form.student %}
 
                                     {% bootstrap_field form.first_name %}
 

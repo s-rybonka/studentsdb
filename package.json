@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/StanislavRybonka/studentsdb#readme",
   "dependencies": {
+    "gentelella": "^1.3.0",
     "lodash": "^4.17.4",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
@@ -33,6 +34,7 @@
     "babel-preset-env": "^1.2.1",
     "babel-preset-es2015": "^6.24.0",
     "babel-preset-react": "^6.23.0",
+    "gulp-install": "^1.1.0",
     "webpack": "^2.2.1"
   }
 }

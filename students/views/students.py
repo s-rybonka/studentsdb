@@ -12,7 +12,7 @@ from ..util import paginate, get_current_group
 class StudentsListView(generic.ListView):
 
     paginate_by = 1
-    template_name = 'cabinet_/students/students_list.html'
+    template_name = 'cabinet/students/students_list.html'
 
     def get_context_data(self, **kwargs):
         # This method adds extra variables to template
@@ -45,7 +45,7 @@ class StudentsListView(generic.ListView):
 
 
 class StudentAddView(SuccessMessageMixin, generic.CreateView):
-    template_name = 'cabinet_/students/student_add_form.html'
+    template_name = 'cabinet/students/student_add_form.html'
     form_class = StudentForm
     model = Student
     success_url = reverse_lazy('students_list')
@@ -59,7 +59,7 @@ class StudentAddView(SuccessMessageMixin, generic.CreateView):
 
 
 class StudentsEditView(SuccessMessageMixin, generic.UpdateView):
-    template_name = "cabinet_/students/students_edit_form.html"
+    template_name = "cabinet/students/students_edit_form.html"
     model = Student
     form_class = StudentForm
     success_url = reverse_lazy('students_list')
@@ -75,7 +75,7 @@ class StudentsEditView(SuccessMessageMixin, generic.UpdateView):
 
 class StudentsDeleteView(generic.DeleteView):
     model = Student
-    template_name = 'cabinet_/students/students_confirm_delete.html'
+    template_name = 'cabinet/students/students_confirm_delete.html'
 
     def get_success_url(self):
         return reverse('students_list',

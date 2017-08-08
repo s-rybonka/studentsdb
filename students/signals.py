@@ -97,14 +97,3 @@ def log_migrate(sender, **kwargs):
 
         logger.info(_('Database:{}. App:{}. Migration apllied: {}').format(db_info, app_label, log))
 
-
-request_counter = 0
-
-@receiver(request_started)
-def count_request(sender, **kwargs):
-    global request_counter
-    if request_started:
-        request_counter += 1
-        logger = logging.getLogger(__name__)
-
-        logger.info(_('Requests amount on site: {}').format(request_counter))

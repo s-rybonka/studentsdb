@@ -1,6 +1,5 @@
 import rules
 from django.db import models
-from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
@@ -52,6 +51,8 @@ class Account(AbstractBaseUser):
 
     last_name = models.CharField(max_length=30, null=True, verbose_name=_('Surname'))
 
+    avatar = models.ImageField(upload_to='media')
+
     is_email_confirmed = models.BooleanField(verbose_name='Email confirmed', default=False)
 
     is_active = models.BooleanField(default=True)
@@ -59,6 +60,8 @@ class Account(AbstractBaseUser):
     is_admin = models.BooleanField(default=False)
 
     timezone = TimeZoneField(verbose_name=_('Time zone'), default="UTC")
+
+    language = models.CharField(max_length=20)
 
     data_joined = models.DateTimeField(verbose_name='Date joined', auto_now_add=True, null=True, blank=True)
 

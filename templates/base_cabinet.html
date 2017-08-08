@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block css %}
+    <link href="{% static 'gentelella/vendors/nprogress/nprogress.css' %}" rel="stylesheet">
+    <link href="{% static 'gentelella/build/css/custom.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/project_css.css' %}" media="screen">
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'cabinet/sidebar.html' %}
+
+{% endblock %}
+
+{% block header %}
+    {% include 'cabinet/header.html' %}
+{% endblock %}
+
+
+{% block content %}
+
+{% endblock %}
+
+
+{% block footer %}
+    {% include 'cabinet/footer.html' %}
+{% endblock %}
+
+{% block javascript %}
+    <!-- FastClick -->
+    <script src="{% static 'gentelella/vendors/fastclick/lib/fastclick.js' %}"></script>
+    <!-- NProgress -->
+    <script src="{% static 'gentelella/vendors/nprogress/nprogress.js' %}"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="{% static 'gentelella/build/js/custom.min.js' %}"></script>
+
+
+{% endblock %}

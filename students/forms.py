@@ -59,7 +59,7 @@ class StudentForm(forms.ModelForm):
 
     class Meta:
         model = Student
-        fields = ('first_name', 'last_name', 'middle_name', 'birthday', 'photo', 'ticket', 'notes', 'student_group',)
+        fields = ('student','first_name', 'last_name', 'middle_name', 'birthday', 'photo', 'ticket', 'notes', 'student_group',)
         widgets = {
             'photo': ImageWidget
         }

@@ -8,7 +8,7 @@ from .group import Group
 
 class Student(models.Model):
     '''Student model'''
-
+    student = models.OneToOneField('accounts.Account')
     first_name = models.CharField(max_length=256, blank=False, verbose_name=_('Name'))
     last_name = models.CharField(max_length=256, blank=False, verbose_name=_('Surname'))
     middle_name = models.CharField(max_length=256, blank=True, verbose_name=_('Second name'), default='')

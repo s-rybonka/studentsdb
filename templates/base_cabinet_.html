@@ -2,7 +2,6 @@
 {% load i18n %}
 {% load  staticfiles %}
 
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -31,7 +30,7 @@
     <!--------- Start Header --------->
     <div class="row" id="header">
         <!----- Logo ----->
-        <div class="col-xs-6">
+        <div class="col-xs-4">
             <h1>
                 <!-- We can change logo in other template, need only override this block -->
                 {% block logo %}
@@ -54,10 +53,12 @@
                 </select>
             {% endblock %}
         </div>
-    <div class="col-md-2" id="language-bar">
-        {% include 'snippets/language.html' %}
-
-    </div>
+        <div class="col-md-2" id="language-bar">
+            {% include 'snippets/language.html' %}
+        </div>
+        <div class="col-md-2" style="margin-top: 35px;">
+            <a target="_blank" href="{% url 'cabinet:profile:personal-data' %}">{% trans 'Cabinet' %} > </a>
+        </div>
     </div>
     <!------ End Header ------>
     <!------ Start Subheader ------>
@@ -66,7 +67,7 @@
             {% with request.resolver_match.url_name as url_name %}
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="{% if url_name == 'students_list' %}active{% endif %}" data-url="{{ url_name }}">
-                        <a class="menu_item_url" href="{% url 'students_list' %}">{%  trans 'Students' %}</a>
+                        <a class="menu_item_url" href="{% url 'students_list' %}">{% trans 'Students' %}</a>
                     </li>
                     <li class="{% if url_name == 'journal' %}active{% endif %}">
                         <a class="menu_item_url" href="{% url 'journal' %}">{% trans 'Journal' %}</a>
@@ -85,7 +86,6 @@
         </div>
     </div>
     <!------ End Subheader ------>
-
 
     <!-- Start Content Columns -->
     <div class="row" id="content-columns">

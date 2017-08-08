@@ -10,7 +10,7 @@ from ..util import get_current_group
 
 
 class ExamsListView(generic.ListView):
-    template_name = 'cabinet_/exams/exams_list.html'
+    template_name = 'cabinet/exams/exams_list.html'
     model = Exam
     paginate_by = 10
 
@@ -27,7 +27,7 @@ class ExamsListView(generic.ListView):
 
 
 class ExamResultView(generic.ListView):
-    template_name = 'cabinet_/exams/exam_results.html'
+    template_name = 'cabinet/exams/exam_results.html'
     model = ExamResult
     paginate_by = 10
 
@@ -37,7 +37,7 @@ class ExamResultView(generic.ListView):
 
 class ExamAddView(SuccessMessageMixin, generic.CreateView):
     model = Exam
-    template_name = 'cabinet_/exams/exam_add_form.html'
+    template_name = 'cabinet/exams/exam_add_form.html'
     form_class = ExamForm
     success_url = '/exams'
     success_message = _('New exam of %(discipline_name)s had been addded to DB!')
@@ -45,7 +45,7 @@ class ExamAddView(SuccessMessageMixin, generic.CreateView):
 
 class ExamEditView(SuccessMessageMixin, generic.UpdateView):
     model = Exam
-    template_name = 'cabinet_/exams/exam_edit_form.html'
+    template_name = 'cabinet/exams/exam_edit_form.html'
     form_class = ExamForm
     success_url = '/exams'
     success_message = _('%(discipline_name)s was updated!')
@@ -53,7 +53,7 @@ class ExamEditView(SuccessMessageMixin, generic.UpdateView):
 
 class ExamDeleteView(generic.DeleteView):
     model = Exam
-    template_name = 'cabinet_/exams/exam_delete_confirm.html'
+    template_name = 'cabinet/exams/exam_delete_confirm.html'
 
     def get_success_url(self):
         return reverse('exams_list', messages.add_message(self.request, messages.SUCCESS, _('Exam deleted successful!')))

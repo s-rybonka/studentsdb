@@ -14,7 +14,10 @@
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
     <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'gentelella/vendors/bootstrap/dist/css/bootstrap.css' %}">
+     <link rel="stylesheet" href="{% static 'gentelella/vendors/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'gentelella/vendors/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'gentelella/vendors/bootstrap/dist/css/bootstrap-theme.min.css' %}"
+          media="screen">
     <link rel="stylesheet" type="text/css" href="{% static 'css/imagehover.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
@@ -34,11 +37,12 @@
 
 {% include 'site_/_footer.html' %}
 
-<script src="{% static 'gentelella/vendors/jquery/src/jquery.js' %}"></script>
+<script src="{% static 'gentelella/vendors/jquery/dist/jquery.min.js' %}"></script>
+<!-- Bootstrap -->
 <script src="{% static 'js/jquery.easing.min.js' %}"></script>
 <script src="{% static 'gentelella/vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
-<script src="{% static 'js/custom.js' %}"></script>
 
+<script src="{% static 'js/custom.js' %}"></script>
 {% block site_scripts %}
 {% endblock %}
 </body>
