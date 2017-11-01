@@ -1,7 +1,8 @@
+# module os, allow us to work with folders and files
 import os
 from django.core.urlresolvers import reverse_lazy
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+# Build BASE_DIR for project, based on path e.g. (/home/sr/Development/studentsdb).
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
@@ -165,8 +166,7 @@ MODELTRANSLATION_LANGUAGES = ('en', 'uk','ru')
 
 
 
-
-
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
