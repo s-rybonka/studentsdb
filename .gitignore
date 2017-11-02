@@ -60,6 +60,6 @@ staticfiles*
 node_modules*
 static
 soft_environment
-
+studentsdb/.env
 
 

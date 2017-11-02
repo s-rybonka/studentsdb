@@ -1,42 +1,45 @@
 # module os, allow us to work with folders and files
 import os
+
+import environ
 from django.core.urlresolvers import reverse_lazy
 
-# Build BASE_DIR for project, based on path e.g. (/home/sr/Development/studentsdb).
+# Build BASE_DIR for project, e.g. (/home/sr/Development/studentsdb).
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
+# Set up variables with environment
+env = environ.Env(
+    DJANGO_DEBUG=(bool, False),
+    DJANGO_SECRET_KEY=(str, 'Change me'),
+    DJANGO_ALLOWED_HOSTS=(list, []),
+    DJANGO_INTERNAL_IPS=(list, []),
+    DJANGO_BASE_URL=(str, 'Change me'),
+    DJANGO_EMAIL_BACKEND=(str, 'Change me'),
+)
+
+# Read env variables from environment
+environ.Env.read_env()
+
+# Keep it False on production
+DEBUG = env('DJANGO_DEBUG')
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&5h!#q7tov&2ypb!ed+8s8%f6b0_l2k$ul8s$e48642))o3h=h'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
-
-INTERNAL_IPS = [
-    '127.0.0.1'
-]
+SECRET_KEY = env('DJANGO_SECRET_KEY')
+ALLOWED_HOSTS = env('DJANGO_ALLOWED_HOSTS')
+INTERNAL_IPS = env('DJANGO_INTERNAL_IPS')
 
 ROOT_URLCONF = 'studentsdb.urls'
-
-BASE_URL = 'http://127.0.0.1:8000'
-
+BASE_URL = env('DJANGO_BASE_URL')
 LOGIN_REDIRECT_URL = reverse_lazy('groups_list')
 
 AUTH_USER_MODEL = 'accounts.Account'
 
 AUTHENTICATION_BACKENDS = (
-
-    # Needed to login by username in Django admin, regardless of `allauth`
+    # Needed to login by username in Django admin, regardless of 'allauth'
     'rules.permissions.ObjectPermissionBackend',
     'django.contrib.auth.backends.ModelBackend',
-
-    # `allauth` specific authentication methods, such as login by e-mail
+    # 'allauth' specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
-
 )
 
 INSTALLED_APPS = [
@@ -49,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
+    # Third Part apps
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -68,7 +72,6 @@ INSTALLED_APPS = [
     'manager',
 
     'rules.apps.AutodiscoverRulesConfig',
-
 ]
 
 SITE_ID = 1
@@ -83,7 +86,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-
 ]
 
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
@@ -110,7 +112,6 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'students.context_processors.students_processor',
                 'students.context_processors.groups_processors',
-
             ],
             'libraries': {
 
@@ -158,19 +159,15 @@ LANGUAGES = [
     ('ru', 'Russian'),
 ]
 
+# Model Translations
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
-MODELTRANSLATION_LANGUAGES = ('en', 'uk','ru')
+MODELTRANSLATION_LANGUAGES = ('en', 'uk', 'ru')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-# Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
-# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+# Emails settings
+EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
@@ -237,6 +234,8 @@ LOGGING = {
     }
 }
 
+# Debug toolbar
+# TODO remove it in production
 DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.versions.VersionsPanel',
     'debug_toolbar.panels.timer.TimerPanel',
@@ -254,12 +253,14 @@ DEBUG_TOOLBAR_PANELS = [
 
 SHOW_TOOLBAR_CALLBACK = True
 
+# STATIC AND MEDIA FILES SETTINGS
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
+# TODO move this settings to .env
 # Вказувати абсолютну адрессу
 try:
     from studentsdb.local_settings import *
