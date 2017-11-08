@@ -114,7 +114,6 @@ TEMPLATES = [
                 'students.context_processors.groups_processors',
             ],
             'libraries': {
-
                 'utils.tags': 'utils.tags',
             }
         },
