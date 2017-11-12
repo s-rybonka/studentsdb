@@ -36,7 +36,7 @@
                         </div>
                         <table class="table table-bordered text-center" id="students-journal"
                                data-url="{% url 'journal' student.id %}">
-
+                        <!-- Journal table header -->
                             <thead>
                             <tr class="header">
                                 <th class="num">№</th>
@@ -50,32 +50,24 @@
                                 {% endfor %}
                             </tr>
                             </thead>
-
-
+                        <!-- Journal table header end -->
                             <tbody>
                             {% csrf_token %}
-
                             {% for student in students %}
                                 <tr>
                                     <td>
                                         {% if is_paginated %}
-
                                             {{ page_obj.start_index|add:forloop.counter|add:'-1' }}
-
                                         {% else %}
-
                                             {{ forloop.counter }}
-
                                         {% endif %}
                                     </td>
-
                                     <td>
                                         <a href="{% url 'journal' student.id %}" title="Edit student"
                                            target="_blank">
                                             {{ student.fullname }}
                                         </a>
                                     </td>
-
                                     {% for day in student.days %}
                                         <td class="day-box">
                                             <input type="checkbox" data-student-id="{{ student.id }}"
@@ -83,28 +75,18 @@
                                                    data-url="{{ student.update_url }}" value="1"
                                                     {% if day.present %}
                                                    checked="checked"{% endif %}>
-
                                         </td>
                                     {% endfor %}
                                 </tr>
                             {% endfor %}
-
                             </tbody>
                         </table>
-
-
                     </div>
                 </div>
             {% endif %}
-
             <div class="text-center">
                 {% include 'snippets/pagination.html' %}
             </div>
         </div>
     </div>
-
 {% endblock content %}
-
-{% block javascript %}
-
-{% endblock javascript %}

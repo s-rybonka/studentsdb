@@ -1,6 +1,5 @@
 from django import forms
 from timezone_field.forms import TimeZoneFormField
-from django.utils import translation
 
 from studentsdb.settings import LANGUAGES
 

@@ -8,56 +8,55 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>{% block title %}{% endblock %}</title>
-
-    <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-    <link rel="stylesheet" href="{% static 'gentelella/vendors/bootstrap/dist/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'gentelella/vendors/font-awesome/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static 'gentelella/vendors/bootstrap/dist/css/bootstrap-theme.min.css' %}"
-          media="screen">
-
-
     {% block css %}
-
+        <link rel="stylesheet" media="screen"
+              href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+        <link rel="stylesheet"
+              href="{% static 'gentelella/vendors/bootstrap/dist/css/bootstrap.min.css' %}">
+        <link rel="stylesheet"
+              href="{% static 'gentelella/vendors/font-awesome/css/font-awesome.min.css' %}">
+        <link rel="stylesheet"
+              href="{% static 'gentelella/vendors/bootstrap/dist/css/bootstrap-theme.min.css' %}"
+              media="screen">
     {% endblock %}
 </head>
 
 <body class="nav-md">
 <div class="container body">
     <div class="main_container">
-
         {% block sidebar %}
-
         {% endblock %}
+
         {% block header %}
-
         {% endblock %}
 
-     <div class="right_col" role="main">
-     {% block status_message %}
-   <div class="row">
-    <div class="col-md-12">
-   {% if messages %}
-        {% for message in messages %}
-            {% if message.tags %}
-                <div class="alert alert-{{ message.tags }} message_block" role="alert">{{ message }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        <div class="right_col" role="main">
+            {% block status_message %}
+                <div class="row">
+                    <div class="col-md-12">
+                        {% if messages %}
+                            {% for message in messages %}
+                                {% if message.tags %}
+                                    <div class="alert alert-{{ message.tags }} message_block"
+                                         role="alert">{{ message }}
+                                        <button type="button" class="close"
+                                                data-dismiss="alert"
+                                                aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
                 </div>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-   </div>
+            {% endblock %}
 
-  </div>
-{% endblock %}
-        {% block content %}
-
-        {% endblock %}
-      </div>
+            {% block content %}
+            {% endblock %}
+        </div>
 
         {% block footer %}
-
         {% endblock %}
 
     </div>
@@ -66,9 +65,7 @@
 <script src="{% static 'gentelella/vendors/jquery/dist/jquery.min.js' %}"></script>
 <!-- Bootstrap -->
 <script src="{% static 'gentelella/vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
-
 {% block javascript %}
 {% endblock %}
-
 </body>
 </html>

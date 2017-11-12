@@ -2,7 +2,7 @@
 {% load staticfiles i18n %}
 {% block meta_title %}{% trans 'Groups' %}{% endblock %}
 
-
+<!-- TODO move messages to base.html -->
 {% block status_message %}
     {% if messages %}
         {% for message in messages %}
@@ -33,9 +33,7 @@
                                     <a href="{% url 'groups_list' %}?order_by=title{% if order_by == 'title' and reverse != '1' %}&amp;reverse=1{% endif %}">
                                         {% trans 'Name' %}
                                         {% if order_by == 'title' and reverse != '1' %}&uarr;
-
                                             {% elif order_by == 'title' and reverse == '1' %}&darr;
-
                                         {% endif %}
                                     </a>
                                 </th>
@@ -43,9 +41,7 @@
                                     <a href="{% url 'groups_list' %}?order_by=leader{% if order_by == 'leader' and reverse != '1' %}&amp;reverse=1{% endif %}">
                                         {% trans 'Leader' %}
                                         {% if order_by == 'leader' and reverse != '1' %}&uarr;
-
                                             {% elif order_by == 'leader' and reverse == '1' %}&darr;
-
                                         {% endif %}
                                     </a>
                                 </th>
@@ -58,13 +54,9 @@
                             <tr>
                                 <td>
                                     {% if is_paginated %}
-
                                         {{ page_obj.start_index|add:forloop.counter|add:'-1' }}
-
                                     {% else %}
-
                                         {{ forloop.counter }}
-
                                     {% endif %}
                                 </td>
                                 <td>{{ key.title }}</td>

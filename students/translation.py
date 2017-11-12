@@ -1,4 +1,5 @@
 from modeltranslation.translator import translator, TranslationOptions
+
 from .models.student import Student
 
 

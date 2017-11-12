@@ -1,11 +1,12 @@
-from django.views import generic
-from ..models.exam import ExamResult
-from ..models.exam import Exam
-from ..forms import ExamForm
+from django.contrib import messages
 from  django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import reverse
 from django.utils.translation import ugettext as _
-from django.contrib import messages
+from django.views import generic
+
+from ..forms import ExamForm
+from ..models.exam import Exam
+from ..models.exam import ExamResult
 from ..util import get_current_group
 
 
@@ -15,10 +16,8 @@ class ExamsListView(generic.ListView):
     paginate_by = 10
 
     def get_queryset(self):
-
         queryset = Exam.objects.all()
         current_group = get_current_group(self.request)
-
         if current_group:
             queryset = queryset.filter(group_id=current_group)
         else:
@@ -39,21 +38,24 @@ class ExamAddView(SuccessMessageMixin, generic.CreateView):
     model = Exam
     template_name = 'cabinet/exams/exam_add_form.html'
     form_class = ExamForm
-    success_url = '/exams'
-    success_message = _('New exam of %(discipline_name)s had been addded to DB!')
+    success_url = reverse('exams_list')
+    success_message = _('New exam of %(discipline_name)s had been added to DB!')
 
 
 class ExamEditView(SuccessMessageMixin, generic.UpdateView):
     model = Exam
     template_name = 'cabinet/exams/exam_edit_form.html'
     form_class = ExamForm
-    success_url = '/exams'
+    success_url = reverse('exams_list')
     success_message = _('%(discipline_name)s was updated!')
 
 
 class ExamDeleteView(generic.DeleteView):
     model = Exam
     template_name = 'cabinet/exams/exam_delete_confirm.html'
+    success_url = reverse('exams_list')
+    success_message = _('%(discipline_name)s was deleted!')
 
     def get_success_url(self):
-        return reverse('exams_list', messages.add_message(self.request, messages.SUCCESS, _('Exam deleted successful!')))
+        messages.success(self.request, message=self.success_message)
+        return self.success_url

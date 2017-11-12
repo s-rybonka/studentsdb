@@ -1,21 +1,16 @@
 {% extends 'base_cabinet.html' %}
 {% load staticfiles i18n bootstrap3 %}
 
-{% block site_title %}{% endblock %}
-
+{% block site_title %}{% trans 'Settings' %}{% endblock %}
 
 {% block content %}
-
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-
                     <h3>{% trans 'Profile' %}</h3>
                 </div>
             </div>
-
             <div class="clearfix"></div>
-
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
@@ -38,19 +33,13 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-
                             <div class="col-md-6">
                                 <form method="post" action="{% url 'cabinet:profile:session-settings' %}"
                                       enctype="multipart/form-data">
-
                                     {% csrf_token %}
-
                                     {% bootstrap_form_errors form non_fields %}
-
                                     {% bootstrap_field form.timezone %}
-
-                                     {% bootstrap_field form.language %}
-
+                                    {% bootstrap_field form.language %}
                                     <div class="text-right">
                                         <button class="btn btn-success">
                                             <i class="fa fa-refresh m-right-xs"></i>
@@ -59,15 +48,10 @@
                                     </div>
                                 </form>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
 {% endblock %}]
 

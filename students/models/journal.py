@@ -1,11 +1,17 @@
 from django.db import models
 from django.utils.translation import ugettext as _
-from ..models.student import Student
+
+from students.models.student import Student
 
 
 class Journal(models.Model):
-    student = models.ForeignKey(Student, max_length=256, verbose_name=_('Student name'), related_name='students',
-                                blank=False, unique_for_month='date')
+    student = models.ForeignKey(
+        Student,
+        max_length=256,
+        verbose_name=_('Student name'),
+        related_name='students',
+        blank=False,
+        unique_for_month='date')
     date = models.DateField(blank=False, verbose_name=_('Date'))
     status = models.BooleanField(default=False, verbose_name=_('Status'))
 

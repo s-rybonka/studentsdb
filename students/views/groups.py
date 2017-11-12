@@ -1,34 +1,33 @@
-from django.views import generic
-from ..models.group import Group
+from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from ..forms import GroupForm
 from django.shortcuts import reverse
 from django.utils.translation import ugettext as _
-from django.contrib import messages
+from django.views import generic
+
+from ..forms import GroupForm
+from ..models.group import Group
 from ..util import get_current_group
 
 
-# Manage Groups
 class GroupsListView(generic.ListView):
     template_name = "cabinet/groups/groups.html"
     model = Group
     paginate_by = 10
+    filter_reverse_indicator = 1
 
     def get_queryset(self):
-
         current_group = get_current_group(self.request)
-
+        # If group exist
         if current_group:
             queryset = Group.objects.filter(title=current_group)
         else:
             queryset = Group.objects.all()
-
+        # Get parameters from GET request
         order_by = self.request.GET.get('order_by', '')
         if order_by in ('title', 'leader',):
             queryset = queryset.order_by(order_by)
-            if self.request.GET.get('reverse', '') == '1':
+            if self.request.GET.get('reverse', '') == self.filter_reverse_indicator:
                 queryset = queryset.reverse()
-
         return queryset
 
 

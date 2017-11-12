@@ -4,10 +4,13 @@ from django.db import models
 
 
 class Exam(models.Model):
-    discipline_name = models.CharField(max_length=256, verbose_name=_('Discipline name'), blank=False)
+    discipline_name = models.CharField(
+        max_length=256, verbose_name=_('Discipline name'), blank=False)
     date = models.DateTimeField(verbose_name=_('Date'), blank=False)
-    teacher_name = models.CharField(max_length=256, verbose_name=_('Teacher name'), blank=False)
-    group_id = models.ForeignKey('Group', verbose_name=_('Group'), blank=True, null=True)
+    teacher_name = models.CharField(
+        max_length=256, verbose_name=_('Teacher name'), blank=False)
+    group_id = models.ForeignKey(
+        'Group', verbose_name=_('Group'), blank=True, null=True)
 
     class Meta(object):
         verbose_name = _('Exam')

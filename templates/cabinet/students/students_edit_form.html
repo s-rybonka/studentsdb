@@ -13,33 +13,24 @@
                         <div class="col-xs-offset-3 col-xs-5">
                             <fieldset>
                                 <legend>{% trans 'Edit student form' %}</legend>
-
                                 <form method="post" action="{% url 'students_edit' object.id %}"
                                       enctype="multipart/form-data">
                                     {% csrf_token %}
                                     {% bootstrap_form_errors form non_fields %}
-
                                     {% bootstrap_field form.first_name %}
-
                                     {% bootstrap_field form.last_name %}
-
                                     {% bootstrap_field form.middle_name %}
-
                                     {% bootstrap_field form.birthday %}
-
                                     {% bootstrap_field form.photo %}
-
                                     <div id="image-preview">
                                         <label for="preview">{% trans 'New foto' %}<br>
                                             <img class="img-thumbnail" src="#" width="100" id="preview" alt="IMG">
                                         </label>
                                     </div>
-
                                     {% bootstrap_field form.ticket %}
-
                                     {% bootstrap_field form.notes %}
                                     {% bootstrap_field form.student_group %}
-                                    <!-- To do buttons with bootstrap3 -->
+                                    <!-- Buttons block -->
                                     <div class="row">
                                         <div class="col-xs-offset-2 col-xs-3">
                                             <button type="submit" name="add_button" class="btn btn-primary">
@@ -52,9 +43,9 @@
                                             </button>
                                         </div>
                                     </div>
+                                    <!-- End buttons block -->
                                 </form>
                             </fieldset>
-
                         </div>
                     </div>
                 </div>

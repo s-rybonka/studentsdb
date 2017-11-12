@@ -2,7 +2,8 @@ from PIL import Image
 from django.core.files.storage import FileSystemStorage
 from django.utils.translation import ugettext as _
 
-# Unnecessary code, only fo e.q.
+
+# Unnecessary code, only bellow fo e.q.
 def check_image_extensions(img_file, errors):
     file_input = str(img_file)
     available_formats = ['.jpg', '.png']

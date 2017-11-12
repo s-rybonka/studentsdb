@@ -1,32 +1,32 @@
-from django import forms
+import magic
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
-from django.core.urlresolvers import reverse
-from students.models import Student
-import magic
+from datetimewidget.widgets import DateTimeWidget
+from django import forms
 from django.core.exceptions import ValidationError
-from studentsdb.settings import CONTENT_TYPES, MAX_UPLOAD_SIZE
 from django.core.mail import send_mail
-from studentsdb.local_settings import MANAGERS
-from .widgets import ImageWidget
+from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
-from .models.group import Group
 
+from students.models import Student
+from studentsdb.local_settings import MANAGERS
+from studentsdb.settings import CONTENT_TYPES, MAX_UPLOAD_SIZE
 from .models.exam import Exam
+from .models.group import Group
 from .models.journal import Journal
+from .widgets import ImageWidget
 
 
 # Students FORM
-
 class ContactForm(forms.Form):
     from_email = forms.EmailField(label=_('Email'))
     subject = forms.CharField(label=_('Subject'), max_length=128)
-    message = forms.CharField(label=_('Message'), max_length=2500, widget=forms.Textarea)
+    message = forms.CharField(label=_('Message'), max_length=2500,
+                              widget=forms.Textarea)
 
     def __init__(self, *args, **kwargs):
-        # call origin initializator
+        # call origin init
         super(ContactForm, self).__init__(*args, **kwargs)
-
         # this helper object allow us to customize form
         self.helper = FormHelper()
 
@@ -35,7 +35,7 @@ class ContactForm(forms.Form):
         self.helper.form_method = 'post'
         self.helper.form_action = reverse('contact-admin')
 
-        # twiter bootstrap styles
+        # twitter bootstrap styles
         self.helper.help_text_inline = True
         self.helper.html5_required = True
         self.helper.label_class = 'col-sm-2 control-label'
@@ -45,21 +45,28 @@ class ContactForm(forms.Form):
         self.helper.add_input(Submit('send_button', 'Send'))
 
     def send_email(self):
+        """Contact us page
+
+        Send email to managers
+        """
         email_from = self.cleaned_data.get('from_email')
         subject = self.cleaned_data.get('subject')
         message = self.cleaned_data.get('message')
-
         return send_mail(subject, message, email_from, MANAGERS)
 
 
 class StudentForm(forms.ModelForm):
     last_name = forms.CharField(validators=[])
-    birthday = forms.DateField(input_formats=['%d-%m-%Y', '%Y-%m-%d'], widget=forms.DateInput(
-        attrs={'class': 'dateinput', 'addon_after': '<i class="fa fa-calendar" aria-hidden="true"></i>'}))
+    birthday = forms.DateField(
+        input_formats=['%d-%m-%Y', '%Y-%m-%d'],
+        widget=forms.DateInput(attrs={
+            'class': 'dateinput',
+            'addon_after': '<i class="fa fa-calendar" aria-hidden="true"></i>'}))
 
     class Meta:
         model = Student
-        fields = ('student','first_name', 'last_name', 'middle_name', 'birthday', 'photo', 'ticket', 'notes', 'student_group',)
+        fields = ('student', 'first_name', 'last_name', 'middle_name', 'birthday',
+                 'photo', 'ticket', 'notes', 'student_group',)
         widgets = {
             'photo': ImageWidget
         }
@@ -70,14 +77,10 @@ class StudentForm(forms.ModelForm):
 
         if file:
             file_type = magic.from_buffer(file.read(), mime=True).format().split('/')[1].upper()
-
-            if not file_type in CONTENT_TYPES:
-
-                self.add_error('photo', forms.ValidationError(_('Invalid format for images, recommended PNG')))
-
-
+            if file_type not in CONTENT_TYPES:
+                self.add_error('photo', forms.ValidationError(
+                    _('Invalid format for images, recommended PNG')))
             elif file.size > MAX_UPLOAD_SIZE:
-
                 raise ValidationError(_('Invalid size.'))
         return file
 
@@ -93,49 +96,46 @@ class StudentForm(forms.ModelForm):
         if last_name[0].isupper():
             return last_name
         else:
-            self.add_error('last_name', ValidationError(_('First litter should be Capitalize')))
+            self.add_error('last_name', ValidationError(
+                _('First litter should be Capitalize')))
 
     def clean_student_group(self):
         # take group_id from students table
-
         groups = Group.objects.filter(leader=self.instance).first()
-
         # check if student leader anywhere
         if groups:
             if self.cleaned_data.get('student_group') != groups:
-                raise ValidationError(_('Student are leader in other group'), code='invalid')
-
+                raise ValidationError(_('Student are leader in other group'),
+                                      code='invalid')
         return self.cleaned_data['student_group']
 
 
 # Group FORM
-
 class GroupForm(forms.ModelForm):
     class Meta:
         model = Group
         fields = ['title', 'leader', 'notes']
 
-        # To do, add some validation here if need
+    # TODO add some validation here if need
 
     def clean_leader(self):
-
         # take group_id from students table
-
         student_instance = self.cleaned_data.get('leader')
-
         if student_instance:
-
             if student_instance.student_group_id == self.instance.id:
                 return student_instance
             else:
-                self.add_error('leader', ValidationError(_('This student from other group.')))
+                self.add_error('leader', ValidationError(
+                    _('This student from other group.')))
 
 
 # Exam Form
-
 class ExamForm(forms.ModelForm):
-    date = forms.DateTimeField(required=True, widget=forms.DateInput(
-        attrs={'class': 'dateinput', 'addon_after': '<i class="fa fa-calendar" aria-hidden="true"></i>'}))
+    date = forms.DateTimeField(
+        required=True,
+        widget=forms.DateInput(attrs={
+            'class': 'dateinput',
+            'addon_after': '<i class="fa fa-calendar" aria-hidden="true"></i>'}))
 
     class Meta:
         model = Exam
@@ -143,10 +143,6 @@ class ExamForm(forms.ModelForm):
 
 
 # Journal Form
-
-from datetimewidget.widgets import DateTimeWidget
-
-
 class JournalForm(forms.ModelForm):
     class Meta:
         model = Journal
