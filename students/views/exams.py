@@ -1,6 +1,6 @@
 from django.contrib import messages
-from  django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import reverse
+from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
 from django.utils.translation import ugettext as _
 from django.views import generic
 
@@ -38,7 +38,7 @@ class ExamAddView(SuccessMessageMixin, generic.CreateView):
     model = Exam
     template_name = 'cabinet/exams/exam_add_form.html'
     form_class = ExamForm
-    success_url = reverse('exams_list')
+    success_url = reverse_lazy('exams_list')
     success_message = _('New exam of %(discipline_name)s had been added to DB!')
 
 
@@ -46,14 +46,14 @@ class ExamEditView(SuccessMessageMixin, generic.UpdateView):
     model = Exam
     template_name = 'cabinet/exams/exam_edit_form.html'
     form_class = ExamForm
-    success_url = reverse('exams_list')
+    success_url = reverse_lazy('exams_list')
     success_message = _('%(discipline_name)s was updated!')
 
 
 class ExamDeleteView(generic.DeleteView):
     model = Exam
     template_name = 'cabinet/exams/exam_delete_confirm.html'
-    success_url = reverse('exams_list')
+    success_url = reverse_lazy('exams_list')
     success_message = _('%(discipline_name)s was deleted!')
 
     def get_success_url(self):

@@ -14,7 +14,7 @@ urlpatterns = i18n_patterns(
     url(r'^admin/', admin.site.urls),
     url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     url(r'^i18n/', include('django.conf.urls.i18n')),
-    url(r'cabinet/', include('students.urls')),
+    url(r'^students/', include('students.urls')),
     url(r'', include('core.urls')),
     url(r'^accounts/', include('accounts.urls')),
     url(r'^manager/', include('manager.urls', 'manager', 'manager')),

@@ -1,9 +1,10 @@
-from django.conf.urls import url, include
+from django.conf.urls import url
 
-from students.views import students as students_views, groups as groups_views, journal as journal_views, \
-    exams as exams_views
-from .views.contact_admin import ContactUsView
-
+from students.views import students as students_views
+from students.views import groups as groups_views
+from students.views import journal as journal_views
+from students.views import exams as exams_views
+from students.views import contact_admin
 
 urlpatterns = [
     # Students urls
@@ -63,8 +64,6 @@ urlpatterns = [
 
     # Contact admin urls
     url(r'^contact-admin/$',
-        ContactUsView.as_view(),
+        contact_admin.ContactUsView.as_view(),
         name='contact-admin'),
-    # TODO remove url bellow
-    # url(r'^contact/', include('contact_form.urls'), name='contact_form'),
 ]
