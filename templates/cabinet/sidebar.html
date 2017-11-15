@@ -17,7 +17,7 @@
                          alt="">
                 {% endif %}
                 <span>{% trans 'Welcome,' %}</span>
-                <h2>{{ request.user.first_name }} {{ request.user.last_name }}</h2>
+                <h2>{{ request.user.get_full_name }}</h2>
             </div>
             <div class="clearfix"></div>
         </div>

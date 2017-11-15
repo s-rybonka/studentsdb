@@ -3,6 +3,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.utils.translation import ugettext as _
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from ..forms import ExamForm
 from ..models.exam import Exam
@@ -10,7 +11,7 @@ from ..models.exam import ExamResult
 from ..util import get_current_group
 
 
-class ExamsListView(generic.ListView):
+class ExamsListView(LoginRequiredMixin, generic.ListView):
     template_name = 'cabinet/exams/exams_list.html'
     model = Exam
     paginate_by = 10
@@ -25,7 +26,7 @@ class ExamsListView(generic.ListView):
         return queryset
 
 
-class ExamResultView(generic.ListView):
+class ExamResultView(LoginRequiredMixin, generic.ListView):
     template_name = 'cabinet/exams/exam_results.html'
     model = ExamResult
     paginate_by = 10
@@ -34,7 +35,7 @@ class ExamResultView(generic.ListView):
         return ExamResult.objects.all()
 
 
-class ExamAddView(SuccessMessageMixin, generic.CreateView):
+class ExamAddView(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
     model = Exam
     template_name = 'cabinet/exams/exam_add_form.html'
     form_class = ExamForm
@@ -42,7 +43,7 @@ class ExamAddView(SuccessMessageMixin, generic.CreateView):
     success_message = _('New exam of %(discipline_name)s had been added to DB!')
 
 
-class ExamEditView(SuccessMessageMixin, generic.UpdateView):
+class ExamEditView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
     model = Exam
     template_name = 'cabinet/exams/exam_edit_form.html'
     form_class = ExamForm
@@ -50,7 +51,7 @@ class ExamEditView(SuccessMessageMixin, generic.UpdateView):
     success_message = _('%(discipline_name)s was updated!')
 
 
-class ExamDeleteView(generic.DeleteView):
+class ExamDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Exam
     template_name = 'cabinet/exams/exam_delete_confirm.html'
     success_url = reverse_lazy('exams_list')

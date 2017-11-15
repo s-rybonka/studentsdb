@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block css %}
+    <!-- Bootstrap -->
+    <link href="{% static 'gentelella/vendors/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{% static 'gentelella/vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
     <link href="{% static 'gentelella/vendors/nprogress/nprogress.css' %}" rel="stylesheet">
     <link href="{% static 'gentelella/build/css/custom.min.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/project_css.css' %}" media="screen">

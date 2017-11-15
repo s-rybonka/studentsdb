@@ -7,11 +7,12 @@ from datetime import datetime, date
 from dateutil.relativedelta import relativedelta
 from calendar import monthrange, weekday, day_abbr
 from django.http import JsonResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from ..util import paginate, get_current_group
 
 
-class JournalView(generic.TemplateView):
+class JournalView(LoginRequiredMixin, generic.TemplateView):
     template_name = "cabinet/journal/journal.html"
 
     def get_context_data(self, **kwargs):
@@ -114,12 +115,12 @@ class JournalView(generic.TemplateView):
         return JsonResponse({'status': 'success'})
 
 
-class JournalSpecificStudentView(generic.TemplateView):
+class JournalSpecificStudentView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'cabinet/journal/journal_specific_student.html'
 
     def get_student(self, request, jid):
         return render(self, request, jid)
 
 
-class JournalUpdateView(generic.TemplateView):
+class JournalUpdateView(LoginRequiredMixin, generic.TemplateView):
     template_name = 'cabinet/journal/journal_update.html'

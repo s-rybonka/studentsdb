@@ -3,13 +3,14 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.utils.translation import ugettext as _
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from ..forms import StudentForm
 from ..models.student import Student
 from ..util import get_current_group
 
 
-class StudentsListView(generic.ListView):
+class StudentsListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 10
     template_name = 'cabinet/students/students_list.html'
 
@@ -37,7 +38,7 @@ class StudentsListView(generic.ListView):
         return queryset
 
 
-class StudentAddView(SuccessMessageMixin, generic.CreateView):
+class StudentAddView(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
     template_name = 'cabinet/students/student_add_form.html'
     form_class = StudentForm
     model = Student
@@ -51,7 +52,7 @@ class StudentAddView(SuccessMessageMixin, generic.CreateView):
         return super(StudentAddView, self).form_valid(form)
 
 
-class StudentsEditView(SuccessMessageMixin, generic.UpdateView):
+class StudentsEditView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
     template_name = "cabinet/students/students_edit_form.html"
     model = Student
     form_class = StudentForm
@@ -64,7 +65,7 @@ class StudentsEditView(SuccessMessageMixin, generic.UpdateView):
         return super(StudentsEditView, self).form_valid(form)
 
 
-class StudentsDeleteView(generic.DeleteView):
+class StudentsDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Student
     template_name = 'cabinet/students/students_confirm_delete.html'
 

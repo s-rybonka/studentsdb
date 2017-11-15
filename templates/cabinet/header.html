@@ -6,26 +6,36 @@
                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                <li>
+                    <a href="javascript:;" class="user-profile dropdown-toggle"
+                       data-toggle="dropdown"
                        aria-expanded="false">
-                        {% if request.user.avatar %}
-                        <img src="{{ request.user.avatar.url }}" width="30" height="30" class="img-responsive" alt="">
+                            {% if request.user.avatar %}
+                            <img style="margin-left: 40px;" src="{{ request.user.avatar.url }}" width="30"
+                                 height="30" class="img-responsive user_photo" alt="">
                         {% else %}
-                        <img src="{% static 'img/index.jpeg' %}" width="30" height="30" class="img-responsive" alt="">
+                            <img style="margin-left: 40px;" src="{% static 'img/index.jpeg' %}" width="30"
+                                 height="30" class="img-responsive" alt="">
                         {% endif %}
-                        {{ request.user.first_name }} {{ request.user.last_name }}
+                        {{ request.user.get_full_name }}
                         <span class=" fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">
-                        <li><a href="{% url 'cabinet:profile:personal-data' %}">{% trans 'Profile' %}</a></li>
-                        <li><a href="{% url 'home-page' %}">{% trans 'View Site' %}</a></li>
-                        <li><a href="{% url 'account_logout' %}"><i class="fa fa-sign-out pull-right"></i> {% trans 'Log Out' %}</a></li>
+                        <li>
+                            <a href="{% url 'cabinet:profile:personal-data' %}">{% trans 'Profile' %}</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'home-page' %}">{% trans 'View Site' %}</a>
+                        </li>
+                        <li><a href="{% url 'account_logout' %}"><i
+                                class="fa fa-sign-out pull-right"></i> {% trans 'Log Out' %}
+                        </a></li>
                     </ul>
                 </li>
                 <li>
                     {% get_current_timezone as TIME_ZONE %}
-                    <p style="margin-top: 20px;">{% trans 'Current timezone:' %} <b>{{ TIME_ZONE }}</b></p>
+                    <p style="margin-top: 20px;">{% trans 'Current timezone:' %}
+                        <b>{{ TIME_ZONE }}</b></p>
                 </li>
 
             </ul>

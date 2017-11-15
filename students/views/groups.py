@@ -3,13 +3,14 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import reverse
 from django.utils.translation import ugettext as _
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from ..forms import GroupForm
 from ..models.group import Group
 from ..util import get_current_group
 
 
-class GroupsListView(generic.ListView):
+class GroupsListView(LoginRequiredMixin, generic.ListView):
     template_name = "cabinet/groups/groups.html"
     model = Group
     paginate_by = 10
@@ -31,7 +32,7 @@ class GroupsListView(generic.ListView):
         return queryset
 
 
-class GroupsAddView(SuccessMessageMixin, generic.CreateView):
+class GroupsAddView(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
     template_name = 'cabinet/groups/groups_add.html'
     model = Group
     form_class = GroupForm
@@ -39,7 +40,7 @@ class GroupsAddView(SuccessMessageMixin, generic.CreateView):
     success_message = _('%(title)s Added to group list!')
 
 
-class GroupsEditView(SuccessMessageMixin, generic.UpdateView):
+class GroupsEditView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
     model = Group
     template_name = 'cabinet/groups/groups_edit.html'
     form_class = GroupForm
@@ -47,7 +48,7 @@ class GroupsEditView(SuccessMessageMixin, generic.UpdateView):
     success_message = _('%(title)s Updated!')
 
 
-class GroupsDeleteView(generic.DeleteView):
+class GroupsDeleteView(LoginRequiredMixin, generic.DeleteView):
     template_name = 'cabinet/groups/groups_delete_confirm.html'
     model = Group
 

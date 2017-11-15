@@ -67,8 +67,14 @@ class Account(AbstractBaseUser):
     REQUIRED_FIELDS = []
 
     def get_full_name(self):
-        """ Get user's full name """
-        return "{} {}".format(self.first_name, self.last_name)
+        """
+        Get user's full name.
+        If can't get full name, we will get username
+         """
+        if self.first_name and self.last_name:
+            return "{} {}".format(self.first_name, self.last_name)
+        elif self.username:
+            return self.username
 
     def get_short_name(self):
         """ Get user nickname """
