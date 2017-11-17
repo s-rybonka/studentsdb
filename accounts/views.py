@@ -1,4 +1,5 @@
 from allauth.account import views
+from allauth.account.adapter import get_adapter
 
 
 class SignUpView(views.SignupView):
@@ -12,4 +13,11 @@ class SignInView(views.LoginView):
 class SignOutView(views.LogoutView):
     template_name = 'account/logout.html'
 
-
+    def logout(self):
+        """
+        Django allauth method.
+        Successful logout message had been removed.
+        :return: None
+        """
+        adapter = get_adapter(self.request)
+        adapter.logout(self.request)

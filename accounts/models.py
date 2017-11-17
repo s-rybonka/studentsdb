@@ -1,8 +1,11 @@
-import rules
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import BaseUserManager
+from django.contrib.auth.models import Permission
+from django.contrib.auth.models import PermissionsMixin
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from model_utils import Choices
 from timezone_field import TimeZoneField
 
 
@@ -25,46 +28,56 @@ class UserManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, password, **extra_fields):
-        """
-        Creates and saves a superuser with the given email, date of
-        birth and password.
-        """
-        user = self.create_user(
-            email,
-            password=password,
-            **extra_fields
-        )
-        user.is_admin = True
+        user = self.create_user(email, password=password, **extra_fields)
+        user.is_staff = True
+        user.is_superuser = True
         user.save(using=self._db)
         return user
 
 
-class Account(AbstractBaseUser):
+class Account(AbstractBaseUser, PermissionsMixin):
     """
     Custom User model, named Account
     """
-    email = models.EmailField(
-        verbose_name='Email',
-        max_length=255,
-        unique=True,
+
+    MANAGER = 'manager'
+    GUEST = 'guest'
+    ROLES = Choices(
+        (MANAGER, 'MANAGER', _('Manager')),
+        (GUEST, 'GUEST', _('Guest')),
     )
-    username = models.CharField(
-        max_length=30, unique=True, null=True, verbose_name=_('Nickname'))
-    first_name = models.CharField(
-        max_length=30, null=True, verbose_name=_('Name'))
-    last_name = models.CharField(
-        max_length=30, null=True, verbose_name=_('Surname'))
+    email = models.EmailField(verbose_name='Email', max_length=255, unique=True)
+    username = models.CharField(max_length=100, unique=True)
     avatar = models.ImageField(upload_to='media')
+    role = models.CharField(choices=ROLES, max_length=100, verbose_name=_('Account type'), default=ROLES.GUEST)
     is_email_confirmed = models.BooleanField(verbose_name='Email confirmed', default=False)
-    is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
-    timezone = TimeZoneField(verbose_name=_('Time zone'), default="UTC")
+    timezone = TimeZoneField(verbose_name=_('Time zone'), default="UTC", )
     language = models.CharField(max_length=20)
-    data_joined = models.DateTimeField(verbose_name='Date joined', auto_now_add=True, null=True, blank=True)
+    first_name = models.CharField(_('first name'), max_length=30, blank=True)
+    last_name = models.CharField(_('last name'), max_length=30, blank=True)
+    is_staff = models.BooleanField(
+        _('staff status'),
+        default=False,
+        help_text=_('Designates whether the user can log into this admin site.'))
+    is_active = models.BooleanField(_('active'), default=True)
+    date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
 
     objects = UserManager()
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email']
+
+    @property
+    def is_manager(self):
+        return self.role == self.ROLES.MANAGER
+
+    @property
+    def is_guest(self):
+        return self.role == self.ROLES.GUEST
+
+    @property
+    def member_role(self):
+        if self.role:
+            return self.role.upper()
 
     def get_full_name(self):
         """
@@ -83,22 +96,49 @@ class Account(AbstractBaseUser):
     def __str__(self):
         return self.email
 
-    def has_perm(self, perm, obj=None):
-        """ Does the user have a specific permission """
-        return self.is_admin or rules.has_perm(perm, self, obj)
+    def create_custom_permission(self, role_type):
+        """
+        Create custom permission for specific user role.
+        Will be used in PermissionRequiredMixin.
 
-    def has_perms(self, perms, obj=None):
-        """ Does the user have a specific permission """
-        return self.is_admin or all(rules.has_perm(perm, self, obj) for perm in perms)
+        :param role_type:
+        :return: str: permission ('manager', 'guest')
+        """
+        content_type = ContentType.objects.get_or_create(
+            model="", app_label=self._meta.app_label
+        )
+        permission = Permission.objects.get_or_create(
+            codename=role_type,
+            name=role_type,
+            content_type=content_type[0],
+        )
+        return permission[0]
 
-    def has_module_perms(self, app_label):
-        """ Does the user have permissions to view the app `app_label` """
-        return self.is_admin or rules.has_perm(app_label, self)
+    def set_custom_user_permission(self):
+        """
+        Add permission to user.
+        Remove old permission.
 
-    # TODO rename to is_admin
-    @property
-    def is_staff(self):
-        """ Is the user a member admin """
-        return self.is_admin
+        :return: None
+        """
+        # TODO Maybe need refactor this part in the future.
+        self.remove_permissions(self.GUEST, self.MANAGER)
+        if self.role == self.MANAGER:
+            is_manager_permission = self.create_custom_permission(self.MANAGER)
+            self.user_permissions.add(is_manager_permission)
+        elif self.role == self.GUEST:
+            is_guest_permission = self.create_custom_permission(self.GUEST)
+            self.user_permissions.add(is_guest_permission)
 
+    def remove_permissions(self, *args):
+        custom_user_permissions = Permission.objects.filter(codename__in=args)
+        if custom_user_permissions:
+            for permission in custom_user_permissions:
+                self.user_permissions.remove(permission)
 
+    def save(self, *args, **kwargs):
+        if self.email != self.username:
+            self.username = self.email
+        # TODO Add condition, check if role field was affected.
+        self.set_custom_user_permission()
+        return super().save(*args, **kwargs)

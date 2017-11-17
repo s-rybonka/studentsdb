@@ -35,10 +35,7 @@ LOGIN_REDIRECT_URL = reverse_lazy('groups_list')
 AUTH_USER_MODEL = 'accounts.Account'
 
 AUTHENTICATION_BACKENDS = (
-    # Needed to login by username in Django admin, regardless of 'allauth'
-    'rules.permissions.ObjectPermissionBackend',
     'django.contrib.auth.backends.ModelBackend',
-    # 'allauth' specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
@@ -70,8 +67,6 @@ INSTALLED_APPS = [
     'accounts',
     'core',
     'manager',
-
-    'rules.apps.AutodiscoverRulesConfig',
 ]
 
 SITE_ID = 1
@@ -249,6 +244,10 @@ DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.logging.LoggingPanel',
     'debug_toolbar.panels.redirects.RedirectsPanel',
 ]
+
+# Django-allauth settings
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 3
+ACCOUNT_LOGOUT_ON_GET = True
 
 SHOW_TOOLBAR_CALLBACK = True
 

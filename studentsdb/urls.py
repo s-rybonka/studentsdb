@@ -11,7 +11,7 @@ js_info_dict = {
 }
 
 urlpatterns = i18n_patterns(
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/', include(admin.site.urls)),
     url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^students/', include('students.urls')),

@@ -18,6 +18,8 @@
                 {% endif %}
                 <span>{% trans 'Welcome,' %}</span>
                 <h2>{{ request.user.get_full_name }}</h2>
+             <span>{{ request.user.member_role }}</span>
+
             </div>
             <div class="clearfix"></div>
         </div>

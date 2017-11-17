@@ -1,8 +1,7 @@
 from django import forms
 from django.contrib import admin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from django.contrib.auth.models import Group
-
+from django.utils.translation import gettext_lazy as _
 from .models import Account
 
 
@@ -10,7 +9,6 @@ class UserCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
     fields, plus a repeated password.
     """
-
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(
         label='Password confirmation', widget=forms.PasswordInput)
@@ -45,7 +43,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = Account
-        fields = ('email', 'password', 'is_active', 'is_admin')
+        fields = ('email', 'password', 'is_active',)
 
     def clean_password(self):
         # Regardless of what the user provides, return the initial value.
@@ -57,11 +55,14 @@ class UserChangeForm(forms.ModelForm):
 class AccountAdmin(admin.ModelAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
-    list_display = ('email', 'is_admin')
-    list_filter = ('is_admin',)
+    list_display = ('email', 'username',)
+
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Permissions', {'fields': ('is_admin', 'is_manager')}),
+        (_('Personal info'), {'fields': ('first_name', 'last_name', 'email', 'timezone')}),
+        (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
+                                       'groups', 'user_permissions')}),
+        (_('Important dates'), {'fields': ('last_login',)}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
     # overrides get_fieldsets to use this attribute when creating a user.
@@ -73,9 +74,9 @@ class AccountAdmin(admin.ModelAdmin):
     )
     search_fields = ('email',)
     ordering = ('email',)
-    filter_horizontal = ()
+    # Possibility to change permissions at User model
+    filter_horizontal = ('groups', 'user_permissions',)
 
 
 admin.site.register(Account, AccountAdmin)
-admin.site.unregister(Account)
-admin.site.unregister(Group)
+

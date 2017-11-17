@@ -3,16 +3,18 @@ import logging
 from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import ugettext as _
 from django.views import generic
+from django.urls import reverse_lazy
+from utils.mixins import GuestRequiredMixin
 
 from students.signals import contact_admin_signal
 from ..forms import ContactForm
 
 
-class ContactUsView(SuccessMessageMixin, generic.FormView):
-    template_name = 'site_/contact_us.html'
+class ContactUsView(GuestRequiredMixin, SuccessMessageMixin, generic.FormView):
+    template_name = 'contact_us/contact_us_form.html'
     form_class = ContactForm
-    success_url = '/contact-admin'
-    success_message = _('Message send successful')
+    success_url = reverse_lazy('contact-admin')
+    success_message = _('Message sent successful')
 
     def form_valid(self, form):
         form.send_email()

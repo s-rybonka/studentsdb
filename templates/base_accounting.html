@@ -79,7 +79,9 @@
                         <a class="menu_item_url" href="{% url 'exams_list' %}">{% trans 'Exams' %}</a>
                     </li>
                     <li class="{% if url_name == 'contact_form' %}active{% endif %}">
-                        <a class="menu_item_url" href="{% url 'contact-admin' %}">{% trans 'Contact us' %}</a>
+                        {% if request.user.is_guest %}
+                            <a class="menu_item_url" href="{% url 'contact-admin' %}">{% trans 'Contact us' %}</a>
+                        {% endif %}
                     </li>
                 </ul>
             {% endwith %}

@@ -1,13 +1,13 @@
-from django.conf.urls import url, include
+from django.conf.urls import url
 from allauth.account import views
-from accounts.views import SignUpView,SignInView,SignOutView
+from accounts.views import SignUpView, SignInView, SignOutView
 
 urlpatterns = [
     url(r"^signup/$", SignUpView.as_view(), name="account_signup"),
 
     url(r"^login/$", SignInView.as_view(), name="account_login"),
 
-    url(r"^logout/$", views.logout, name="account_logout"),
+    url(r"^logout/$", SignOutView.as_view(), name="account_logout"),
 
     url(r"^password/change/$", views.password_change, name="account_change_password"),
 

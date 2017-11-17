@@ -10,7 +10,7 @@ from ..models.student import Student
 from ..util import get_current_group
 
 
-class StudentsListView(LoginRequiredMixin, generic.ListView):
+class StudentsListView(generic.ListView):
     paginate_by = 10
     template_name = 'cabinet/students/students_list.html'
 
