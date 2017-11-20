@@ -51,11 +51,11 @@ class Account(AbstractBaseUser, PermissionsMixin):
         (GUEST, 'GUEST', _('Guest')),
     )
     email = models.EmailField(verbose_name='Email', max_length=255, unique=True)
-    avatar = models.ImageField(upload_to='media')
+    avatar = models.ImageField(upload_to='media', blank=True, null=True)
     role = models.CharField(choices=ROLES, max_length=100, verbose_name=_('Account type'), default=ROLES.GUEST)
     is_email_confirmed = models.BooleanField(verbose_name='Email confirmed', default=False)
     timezone = TimeZoneField(verbose_name=_('Time zone'), default="UTC", )
-    language = models.CharField(max_length=20)
+    language = models.CharField(max_length=20, default='en')
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
     is_staff = models.BooleanField(
@@ -89,8 +89,8 @@ class Account(AbstractBaseUser, PermissionsMixin):
          """
         if self.first_name and self.last_name:
             return "{} {}".format(self.first_name, self.last_name)
-        elif self.username:
-            return self.username
+        elif self.email:
+            return self.email
 
     def get_short_name(self):
         """ Get user nickname """

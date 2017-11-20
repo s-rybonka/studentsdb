@@ -37,21 +37,14 @@
                         <div class="col-md-6">
                             <form method="post" action="{% url 'cabinet:profile:personal-data' %}"
                                   enctype="multipart/form-data">
-
                                 {% csrf_token %}
-
                                 {% bootstrap_form_errors form non_fields %}
-
-                                {% bootstrap_field form.username %}
-
                                 {% bootstrap_field form.first_name %}
-
                                 {% bootstrap_field form.last_name %}
-
-                                {% bootstrap_field form.role %}
-
+                                {% if request.user.is_superuser %}
+                                    {% bootstrap_field form.role %}
+                                {% endif %}
                                 {% bootstrap_field form.avatar %}
-
                                 <div class="text-right">
                                     <button class="btn btn-success">
                                         <i class="fa fa-refresh m-right-xs"></i>

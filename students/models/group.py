@@ -20,6 +20,7 @@ class Group(models.Model):
 
     def __str__(self):
         if self.leader:
-            return '{}({}{})'.format(self.title, self.leader.first_name, self.leader.last_name)
+            return '{} ({} {})'.format(
+                self.title, self.leader.first_name, self.leader.last_name)
         else:
-            return '{}'.format(self.title)
+            return '{}'.format(None)

@@ -14,7 +14,7 @@ from cabinet.profile_.forms import SessionSettingsForm
 class UserProfileView(LoginRequiredMixin, UpdateView):
     template_name = 'cabinet/profile_/user_profile.html'
     model = Account
-    fields = ['username', 'first_name', 'last_name', 'avatar', 'role']
+    fields = ['first_name', 'last_name', 'avatar', 'role']
     messages = {
         'success': _('Profile was updated')
     }

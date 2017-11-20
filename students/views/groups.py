@@ -4,6 +4,7 @@ from django.shortcuts import reverse
 from django.utils.translation import ugettext as _
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 
 from ..forms import GroupForm
 from ..models.group import Group
@@ -36,7 +37,7 @@ class GroupsAddView(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView)
     template_name = 'cabinet/groups/groups_add.html'
     model = Group
     form_class = GroupForm
-    success_url = '/groups'
+    success_url = reverse_lazy('groups_list')
     success_message = _('%(title)s Added to group list!')
 
 
@@ -44,7 +45,7 @@ class GroupsEditView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView
     model = Group
     template_name = 'cabinet/groups/groups_edit.html'
     form_class = GroupForm
-    success_url = '/groups'
+    success_url = reverse_lazy('groups_list')
     success_message = _('%(title)s Updated!')
 
 

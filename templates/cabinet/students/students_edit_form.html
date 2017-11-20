@@ -13,8 +13,7 @@
                         <div class="col-xs-offset-3 col-xs-5">
                             <fieldset>
                                 <legend>{% trans 'Edit student form' %}</legend>
-                                <form method="post" action="{% url 'students_edit' object.id %}"
-                                      enctype="multipart/form-data">
+                                <form class="student_edit_form" method="post" action="{% url 'students_edit' object.id %}">
                                     {% csrf_token %}
                                     {% bootstrap_form_errors form non_fields %}
                                     {% bootstrap_field form.first_name %}
@@ -33,12 +32,10 @@
                                     <!-- Buttons block -->
                                     <div class="row">
                                         <div class="col-xs-offset-2 col-xs-3">
-                                            <button type="submit" name="add_button" class="btn btn-primary">
-                                                {%  trans 'Save' %}
-                                            </button>
+                                            <input class="btn btn-primary" type="submit" value="{%  trans 'Save' %}">
                                         </div>
                                         <div class="col-xs-offset-1 col-xs-3">
-                                            <button type="submit" name="cancel_button" class="btn btn-link">
+                                            <button type="submit" name="cancel_button" id="cancel_button" class="btn btn-link">
                                                 {% trans 'Cancel' %}
                                             </button>
                                         </div>

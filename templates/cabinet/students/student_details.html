@@ -1,0 +1,26 @@
+{% extends 'base_accounting.html' %}
+{% load staticfiles crispy_forms_tags i18n %}
+{% block meta_title %}{% trans 'Details' %}{% endblock %}
+
+{% block content %}
+    <div class="row" id="edit-form-row">
+        <div class="col-xs-12" id="edit-form-xs">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h2>
+                    {% trans 'Details:' %}{{ object }}</h2></div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <ul class="list-group">
+                                <li class="list-group-item"><b>{% trans 'Full name:' %}</b> {{ object.first_name }} {{ object.last_name }}</li>
+                                <li class="list-group-item"><b>{% trans 'Email:' %}</b> {{ object.student.email }}</li>
+                                <li class="list-group-item"><b>{% trans 'Language:' %}</b> {{ object.student.language }}</li>
+                                <li class="list-group-item"><b>{% trans 'Role:' %}</b> {{ object.student.role }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

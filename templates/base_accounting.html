@@ -12,11 +12,10 @@
     <!-- Alternative for some files - CDN repositories -->
     <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css"
           integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
-    <link rel="stylesheet" href="{{ ABSOLUTE_URL }}{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <!-- For future meta title of children's page -->
     <title>{% trans 'Accounting Service' %}{% block meta_title %} {% endblock %}</title>
     <meta name="description" value="{% trans 'App to manage students' %}">
@@ -46,8 +45,8 @@
                 <select>
                     <option value="">{% trans 'All students' %}</option>
                     {% for group in GROUPS %}
-                        <option value="{{ group.id }}" {% if group.selected %}selected='2'{% endif %}>
-                            {{ group.title }}{% if group.leader %},{{ group.leader }}{% endif %}
+                        <option value="{{ group.current_group.id }}" {% if group.selected %}selected='2'{% endif %}>
+                            {{ group.current_group }}
                         </option>
                     {% endfor %}
                 </select>
@@ -78,7 +77,7 @@
                     <li class="{% if url_name == 'exams_list' %}active{% endif %}">
                         <a class="menu_item_url" href="{% url 'exams_list' %}">{% trans 'Exams' %}</a>
                     </li>
-                    <li class="{% if url_name == 'contact_form' %}active{% endif %}">
+                    <li class="{% if url_name == 'contact-admin' %}active{% endif %}">
                         {% if request.user.is_guest %}
                             <a class="menu_item_url" href="{% url 'contact-admin' %}">{% trans 'Contact us' %}</a>
                         {% endif %}
@@ -110,22 +109,7 @@
     </div>
 </div>
 <!------ End Footer ------>
-<!-- Modal Boilerplate -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"
-                        aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"><!-- --></h4>
-            </div>
-            <div class="modal-body"><!-- --></div>
-            <div class="modal-footer"><!-- --></div>
-        </div>
-    </div>
-</div>
+
 <!------ Javascripts Section ------>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
@@ -134,9 +118,7 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
 <script src="{{ ABSOLUTE_URL }}{% static 'js/jquery.cookie.js' %}" type="text/javascript"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 <script src="{% static 'js/main.js' %}" type="text/javascript"></script>

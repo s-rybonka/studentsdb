@@ -15,6 +15,18 @@ env = environ.Env(
     DJANGO_INTERNAL_IPS=(list, []),
     DJANGO_BASE_URL=(str, 'Change me'),
     DJANGO_EMAIL_BACKEND=(str, 'Change me'),
+    FACEBOOK_PROVIDER_NAME=(str, 'Chane me'),
+    FACEBOOK_APP_NAME=(str, 'Chane me'),
+    FACEBOOK_APP_ID=(str, 'Chane me'),
+    FACEBOOK_SECRET_KEY=(str, 'Chane me'),
+    GOOGLE_PROVIDER_NAME=(str, 'Chane me'),
+    GOOGLE_APP_NAME=(str, 'Chane me'),
+    GOOGLE_APP_ID=(str, 'Chane me'),
+    GOOGLE_SECRET_KEY=(str, 'Chane me'),
+    TWITTER_PROVIDER_NAME=(str, 'Chane me'),
+    TWITTER_APP_NAME=(str, 'Chane me'),
+    TWITTER_APP_ID=(str, 'Chane me'),
+    TWITTER_SECRET_KEY=(str, 'Chane me'),
 )
 
 # Read env variables from environment
@@ -22,6 +34,7 @@ environ.Env.read_env()
 
 # Keep it False on production
 DEBUG = env('DJANGO_DEBUG')
+DOMAIN_NAME = env('DOMAIN_NAME')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('DJANGO_SECRET_KEY')
@@ -53,6 +66,9 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.twitter',
     'crispy_forms',
     'bootstrap3',
     'contact_form',
@@ -67,6 +83,7 @@ INSTALLED_APPS = [
     'accounts',
     'core',
     'manager',
+    'utils'
 ]
 
 SITE_ID = 1
@@ -246,8 +263,75 @@ DEBUG_TOOLBAR_PANELS = [
 ]
 
 # Django-allauth settings
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 3
 ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_SUBJECT_PREFIX = 'StudentDB'
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
+SOCIALACCOUNT_EMAIL_REQUIRED = True
+SOCIALACCOUNT_QUERY_EMAIL = True
+SOCIALACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+SOCIALACCOUNT_AUTO_SIGNUP = False
+SOCIALACCOUNT_ADAPTER = 'accounts.social_adapter.SocialAccountAdapter'
+
+# Settings for third app auth
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'METHOD': 'oauth2',
+        'SCOPE': ['email', 'public_profile', 'user_friends'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'FIELDS': [
+            'id',
+            'email',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+            'updated_time',
+        ],
+        'EXCHANGE_TOKEN': True,
+        'LOCALE_FUNC': lambda request: 'en_US',
+        'VERIFIED_EMAIL': True,
+        'VERSION': 'v2.4',
+    },
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    },
+    'twitter': {
+        'SCOPE': [
+            'email',
+        ],
+    }
+}
+
+# Social authentication data
+FACEBOOK_PROVIDER_NAME = env('FACEBOOK_PROVIDER_NAME')
+FACEBOOK_APP_NAME = env('FACEBOOK_APP_NAME')
+FACEBOOK_APP_ID = env('FACEBOOK_APP_ID')
+FACEBOOK_SECRET_KEY = env('FACEBOOK_SECRET_KEY')
+
+GOOGLE_PROVIDER_NAME = env('GOOGLE_PROVIDER_NAME')
+GOOGLE_APP_NAME = env('GOOGLE_APP_NAME')
+GOOGLE_APP_ID = env('GOOGLE_APP_ID')
+GOOGLE_SECRET_KEY = env('GOOGLE_SECRET_KEY')
+
+TWITTER_PROVIDER_NAME = env('TWITTER_PROVIDER_NAME')
+TWITTER_APP_NAME = env('TWITTER_APP_NAME')
+TWITTER_APP_ID = env('TWITTER_APP_ID')
+TWITTER_SECRET_KEY = env('TWITTER_SECRET_KEY')
 
 SHOW_TOOLBAR_CALLBACK = True
 

@@ -32,9 +32,7 @@ def get_groups(request):
     groups = []
     for group in Group.objects.all().order_by('title'):
         groups.append({
-            'id': group.id,
-            'title': group.title,
-            'leader': group.leader and ('%s %s ' % group.leader.first_name, group.leader.last_name) or None,
+            'current_group': group,
             'selected': cur_group and cur_group.id == group.id and True or False
         })
 

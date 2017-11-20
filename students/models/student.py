@@ -27,7 +27,7 @@ class Student(models.Model):
     notes = models.TextField(
         blank=True, verbose_name=_('Additional notices'), null=True)
     student_group = models.ForeignKey(
-        Group, verbose_name=_('Group'), blank=False, null=True, on_delete=models.PROTECT)
+        Group, verbose_name=_('Group'), blank=False, null=True, on_delete=models.SET_NULL)
 
     class Meta(object):
         verbose_name = _('Student')

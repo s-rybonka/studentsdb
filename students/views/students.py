@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from ..forms import StudentForm
 from ..models.student import Student
 from ..util import get_current_group
+from utils.mixins import ManagerRequiredMixin
 
 
 class StudentsListView(generic.ListView):
@@ -38,7 +39,7 @@ class StudentsListView(generic.ListView):
         return queryset
 
 
-class StudentAddView(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView):
+class StudentAddView(ManagerRequiredMixin, SuccessMessageMixin, generic.CreateView):
     template_name = 'cabinet/students/student_add_form.html'
     form_class = StudentForm
     model = Student
@@ -53,16 +54,11 @@ class StudentAddView(LoginRequiredMixin, SuccessMessageMixin, generic.CreateView
 
 
 class StudentsEditView(LoginRequiredMixin, SuccessMessageMixin, generic.UpdateView):
-    template_name = "cabinet/students/students_edit_form.html"
     model = Student
+    template_name = "cabinet/students/students_edit_form.html"
     form_class = StudentForm
     success_url = reverse_lazy('students_list')
-    success_message = _('%(first_name)s %(last_name)s Successfull updated!')
-
-    def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
-        return super(StudentsEditView, self).form_valid(form)
+    success_message = _('%(first_name)s %(last_name)s Successful updated!')
 
 
 class StudentsDeleteView(LoginRequiredMixin, generic.DeleteView):
@@ -72,3 +68,8 @@ class StudentsDeleteView(LoginRequiredMixin, generic.DeleteView):
     def get_success_url(self):
         return reverse('students_list',
                        messages.success(self.request,message=_('Student successful deleted')))
+
+
+class StudentDetailsView(generic.DetailView):
+    template_name = 'cabinet/students/student_details.html'
+    model = Student

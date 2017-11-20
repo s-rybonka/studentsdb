@@ -14,6 +14,7 @@ from ..util import paginate, get_current_group
 
 class JournalView(LoginRequiredMixin, generic.TemplateView):
     template_name = "cabinet/journal/journal.html"
+    paginate_by = 10
 
     def get_context_data(self, **kwargs):
         # get context data from TemplateView class
@@ -89,8 +90,8 @@ class JournalView(LoginRequiredMixin, generic.TemplateView):
                 'update_url': update_url,
             })
 
-        # apply pagination, 10 students per page
-        context = paginate(students, 1, self.request, context, var_name='students')
+        # apply pagination, 20 students per page
+        context = paginate(students, self.paginate_by, self.request, context, var_name='students')
         # finally return updated context
         # with paginated students
         return context

@@ -2,7 +2,7 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title"><i class="fa fa-users"></i>
+            <a href="#" class="site_title"><i class="fa fa-users"></i>
                 <span>{% trans 'Accounting' %}!</span></a>
         </div>
         <div class="clearfix"></div>
@@ -18,8 +18,7 @@
                 {% endif %}
                 <span>{% trans 'Welcome,' %}</span>
                 <h2>{{ request.user.get_full_name }}</h2>
-             <span>{{ request.user.member_role }}</span>
-
+                <span>{{ request.user.member_role }}</span>
             </div>
             <div class="clearfix"></div>
         </div>

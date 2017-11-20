@@ -1,18 +1,17 @@
 {% extends 'base_accounting.html' %}
 {% load staticfiles i18n %}
-{% load  bootstrap3  %}
+{% load  bootstrap3 %}
 {% block meta_title %}{% trans 'Students' %}{% endblock %}
-
-{% block stylesheet %}
-{% endblock %}
 
 <!-- TODO move it to base.html-->
 {% block status_message %}
     {% if messages %}
         {% for message in messages %}
             {% if message.tags %}
-                <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <div class="alert alert-{{ message.tags }}"
+                     role="alert">{{ message }}
+                    <button type="button" class="close" data-dismiss="alert"
+                            aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -26,11 +25,13 @@
     <div class="panel panel-default">
         <div class="panel-heading"><h2>{% trans 'Students db' %}</h2>
             <div class="text-right">
-                <a href="{% url 'students_add' %}" class="btn btn-primary">{%  trans 'Add student' %}</a>
+                <a href="{% url 'students_add' %}"
+                   class="btn btn-primary">{% trans 'Add student' %}</a>
             </div>
         </div>
         <div class="panel-body students-list">
-            <table class="table table-hover table-striped" data-url="{% url 'students_list' %}">
+            <table class="table table-hover table-striped"
+                   data-url="{% url 'students_list' %}">
                 {% with order_by=request.GET.order_by reverse=request.GET.reverse %}
                     <thead>
                     <tr>
@@ -38,7 +39,8 @@
                             <a class="order_by_students"
                                href="{% url 'students_list' %}?order_by=id{% if order_by == 'id' and reverse != '1' %}&amp;reverse=1{% endif %}">
                                 №
-                                {% if order_by == 'id' and reverse != '1' %}&uarr;
+                                {% if order_by == 'id' and reverse != '1' %}
+                                    &uarr;
                                     {% elif order_by == 'id' and reverse == '1' %}&darr;
                                 {% endif %}
                             </a>
@@ -48,7 +50,8 @@
                             <a class="order_by_students"
                                href="{% url 'students_list' %}?order_by=first_name{% if order_by == 'first_name' and reverse != '1' %}&amp;reverse=1{% endif %}">
                                 {% trans 'Name' %}
-                                {% if order_by == 'first_name' and reverse != '1' %}&uarr;
+                                {% if order_by == 'first_name' and reverse != '1' %}
+                                    &uarr;
                                     {% elif order_by == 'first_name' and reverse == '1' %}&darr;
                                 {% endif %}
                             </a>
@@ -57,7 +60,8 @@
                             <a class="order_by_students"
                                href="{% url 'students_list' %}?order_by=last_name{% if order_by == 'last_name' and reverse != '1' %}&amp;reverse=1{% endif %}">
                                 {% trans 'Surname' %}
-                                {% if order_by == 'last_name' and reverse != '1' %}&uarr;
+                                {% if order_by == 'last_name' and reverse != '1' %}
+                                    &uarr;
                                     {% elif order_by == 'last_name' and reverse == '1' %}&darr;
                                     {% elif not order_by %}&uarr;
                                 {% endif %}
@@ -66,7 +70,8 @@
                         <th>
                             <a href="{% url 'students_list' %}?order_by=ticket{% if order_by == 'ticket' and reverse != '1' %}&amp;reverse=1{% endif %}">
                                 № {% trans 'Ticket' %}
-                                {% if order_by == 'ticket' and reverse != '1' %}&uarr;
+                                {% if order_by == 'ticket' and reverse != '1' %}
+                                    &uarr;
                                     {% elif order_by == 'ticket' and reverse == '1' %}&darr;
                                 {% endif %}
                             </a>
@@ -76,7 +81,6 @@
                     </thead>
                 {% endwith %}
                 <tbody>
-
                 {% for student in object_list %}
                     <tr>
                         <td>
@@ -88,44 +92,54 @@
                         </td>
                         <td>
                             {% if student.photo %}
-                                <img src="{{ student.photo.url }}" height="30" width="30" alt="foto"
+                                <img src="{{ student.photo.url }}" height="30"
+                                     width="30" alt="foto"
                                      class="img-responsive img-circle rotateimg60">
                             {% else %}
-                                <img src="{% static 'img/index.jpeg' %}" height="30" width="30" alt="foto"
+                                <img src="{% static 'img/index.jpeg' %}"
+                                     height="30" width="30" alt="foto"
                                      class="img-responsive img-circle rotateimg60">
                             {% endif %}
 
                         </td>
                         <td>
-                            <a class="student_edit_form_link" href="{% url 'students_edit' student.id %}"
+                            <a class="student_edit_form_link"
+                               href="{% url 'students_edit' student.id %}"
                                title="Редагувати">{{ student.first_name }}</a>
                         </td>
                         <td>
-                            <a class="student_edit_form_link" href="{% url 'students_edit' student.id %}"
+                            <a class="student_edit_form_link"
+                               href="{% url 'students_edit' student.id %}"
                                title="Редагувати">{{ student.last_name }}</a>
                         </td>
                         <td>{{ student.ticket }}</td>
                         <td>
                             <div class="dropdown">
-                                <button class="btn btn-default dropdown-toggle " type="button"
+                                <button class="btn btn-default dropdown-toggle "
+                                        type="button"
                                         data-toggle="dropdown">{% trans 'Action' %}
                                     <span class="caret"></span>
                                 </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li role="presentation">
+                                <ul class="dropdown-menu">
+                                    <li>
                                         <a class="student_edit_form_link"
                                            href="{% url 'students_edit' student.id %}">{% trans 'Edit' %}</a>
                                     </li>
-                                    <li role="presentation">
-                                        <a role="menuitem"
-                                           href="{% url 'journal_specific_student' student.id %}">{% trans 'Attend' %}</a>
+                                    <li>
+                                        <a
+                                                href="{% url 'journal_specific_student' student.id %}">{% trans 'Attend' %}</a>
                                     </li>
                                     <li role="presentation">
                                         <a role="menuitem" tabindex="-1"
                                            href="{% url 'students_delete' student.id %}">{% trans 'Delete' %}</a>
                                     </li>
+                                     <li role="presentation">
+                                        <a role="menuitem" tabindex="-1"
+                                           href="{% url 'student_details' student.id %}">{% trans 'Details' %}</a>
+                                    </li>
                                 </ul>
                             </div>
+
                         </td>
                     </tr>
                 {% endfor %}
@@ -135,5 +149,21 @@
     </div>
     <div class="text-center">
         {% include 'snippets/pagination.html' %}
+    </div>
+    <!-- Modal Boilerplate -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"><!-- --></h4>
+                </div>
+                <div class="modal-body"><!-- --></div>
+                <div class="modal-footer"><!-- --></div>
+            </div>
+        </div>
     </div>
 {% endblock %}
