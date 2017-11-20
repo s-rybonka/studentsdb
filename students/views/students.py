@@ -68,8 +68,3 @@ class StudentsDeleteView(LoginRequiredMixin, generic.DeleteView):
     def get_success_url(self):
         return reverse('students_list',
                        messages.success(self.request,message=_('Student successful deleted')))
-
-
-class StudentDetailsView(generic.DetailView):
-    template_name = 'cabinet/students/student_details.html'
-    model = Student

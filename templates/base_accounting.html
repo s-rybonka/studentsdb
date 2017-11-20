@@ -82,6 +82,9 @@
                             <a class="menu_item_url" href="{% url 'contact-admin' %}">{% trans 'Contact us' %}</a>
                         {% endif %}
                     </li>
+                    <li class="{% if url_name == 'account_list' %}active{% endif %}">
+                        <a class="menu_item_url" href="{% url 'account_list' %}">{% trans 'Accounts' %}</a>
+                    </li>
                 </ul>
             {% endwith %}
         </div>

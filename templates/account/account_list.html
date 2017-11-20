@@ -1,0 +1,71 @@
+{% extends 'base_accounting.html' %}
+{% load staticfiles i18n %}
+{% load  bootstrap3 %}
+{% block meta_title %}{% trans 'Students' %}{% endblock %}
+
+<!-- TODO move it to base.html-->
+{% block status_message %}
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags %}
+                <div class="alert alert-{{ message.tags }}"
+                     role="alert">{{ message }}
+                    <button type="button" class="close" data-dismiss="alert"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <!-- Status Message -->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2>{% trans 'Accounts' %}</h2>
+        </div>
+        <div class="panel-body students-list">
+            <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>{% trans 'First name' %}</th>
+                        <th>{% trans 'Last name' %}</th>
+                        <th>{% trans 'Email' %}</th>
+                        <th>{% trans 'Role' %}</th>
+                        <th class="text-primary">{% trans 'Action' %}</th>
+                    </tr>
+                    </thead>
+                <tbody>
+                {% for account in object_list %}
+                    <tr>
+                        <td>{{ account.first_name }}</td>
+                        <td>{{ account.last_name }}</td>
+                        <td>{{ account.email }}</td>
+                        <td>{{ account.role }}</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle "
+                                        type="button"
+                                        data-toggle="dropdown">{% trans 'Action' %}
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                     <li role="presentation">
+                                        <a role="menuitem" tabindex="-1"
+                                           href="{% url 'account_detail' account.id %}">{% trans 'Review account' %}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="text-center">
+        {% include 'snippets/pagination.html' %}
+    </div>
+{% endblock %}

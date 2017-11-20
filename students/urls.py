@@ -20,9 +20,6 @@ urlpatterns = [
     url(r'^students/(?P<pk>\d+)/delete/$',
         students_views.StudentsDeleteView.as_view(),
         name='students_delete'),
-    url(r'^students/(?P<pk>\d+)/details/$',
-        students_views.StudentDetailsView.as_view(),
-        name='student_details'),
 
     # Groups urls
     url(r'^groups/$',
