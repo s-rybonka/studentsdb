@@ -41,6 +41,7 @@
                                 {% bootstrap_form_errors form non_fields %}
                                 {% bootstrap_field form.first_name %}
                                 {% bootstrap_field form.last_name %}
+                                <!-- TODO make role non required on form -->
                                 {% if request.user.is_superuser %}
                                     {% bootstrap_field form.role %}
                                 {% endif %}

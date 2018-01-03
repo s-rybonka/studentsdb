@@ -31,4 +31,6 @@ urlpatterns = [
         name="account_list"),
     url(r"^account/(?P<pk>\d+)/detail/$", account_views.AccountDetailView.as_view(),
         name="account_detail"),
+    url(r"^github-connect/$", account_views.github_connect, name="github_connect"),
+    url(r"^github-callback/$", account_views.github_callback, name="github_callback"),
 ]

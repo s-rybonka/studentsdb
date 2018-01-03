@@ -55,7 +55,7 @@ class UserChangeForm(forms.ModelForm):
 class AccountAdmin(admin.ModelAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
-    list_display = ('email', 'first_name', 'last_name')
+    list_display = ('email', 'first_name', 'last_name', 'github_token')
 
     fieldsets = (
         (None, {'fields': ('email', 'password')}),

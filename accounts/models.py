@@ -58,6 +58,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
     language = models.CharField(max_length=20, default='en')
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
+    github_token = models.CharField(_('Token'), max_length=100, unique=True, null=True, blank=True)
     is_staff = models.BooleanField(
         _('staff status'),
         default=False,

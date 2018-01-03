@@ -27,6 +27,8 @@ env = environ.Env(
     TWITTER_APP_NAME=(str, 'Chane me'),
     TWITTER_APP_ID=(str, 'Chane me'),
     TWITTER_SECRET_KEY=(str, 'Chane me'),
+    GITHUB_APP_ID = (str, 'change me'),
+    GITHUB_APP_SECRET_KEY = (str, 'change me'),
 )
 
 # Read env variables from environment
@@ -49,6 +51,7 @@ AUTH_USER_MODEL = 'accounts.Account'
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
+    'accounts.backends.SocialAuthBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
@@ -332,6 +335,9 @@ TWITTER_PROVIDER_NAME = env('TWITTER_PROVIDER_NAME')
 TWITTER_APP_NAME = env('TWITTER_APP_NAME')
 TWITTER_APP_ID = env('TWITTER_APP_ID')
 TWITTER_SECRET_KEY = env('TWITTER_SECRET_KEY')
+
+GITHUB_APP_ID=env('GITHUB_APP_ID')
+GITHUB_APP_SECRET_KEY=env('GITHUB_APP_SECRET_KEY')
 
 SHOW_TOOLBAR_CALLBACK = True
 

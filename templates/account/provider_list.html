@@ -1,4 +1,4 @@
-{% load socialaccount %}
+{% load socialaccount i18n %}
 
 {% get_providers as socialaccount_providers %}
 
@@ -17,4 +17,6 @@
        class="socialaccount_provider {{ provider.id }}"
        href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}">{{ provider.name }}</a>
 {% endfor %}
+<!-- Custom logic for github auth, out of allauth package. -->
+<a href="{% url 'github_connect' %}">{% trans 'GitHub' %}</a>
 
