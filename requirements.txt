@@ -21,7 +21,7 @@ microsofttranslator==0.8
 -e git+https://github.com/ekalinin/nodeenv.git@e0b0bd40556161b65eb97e537ae3ab30f5ab86c6#egg=nodeenv
 oauthlib==2.0.2
 olefile==0.44
-Pillow==4.1.1
+Pillow==6.2.0
 polib==1.0.8
 psycopg2==2.7.1
 python-dateutil==2.6.0
